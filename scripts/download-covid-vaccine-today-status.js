@@ -19,6 +19,7 @@ download(url, 'data', { filename })
 
         await fs.writeJson(`./data/${jsonFileName}`, json)
         await fs.copyFile(`./data/${jsonFileName}`, './data/latest.json')
+        await fs.writeJson('./data/info.json', { lastModified: +new Date() })
     })
     .catch(err => {
         console.error(`${url} can't be downloaded. Error:`)
