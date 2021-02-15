@@ -11,9 +11,8 @@ export default function Table() {
         () => data.map(row => {
             // console.log(row)
             const reducer = (accumulator, currentValue) =>
-            !isNaN(accumulator) ? parseInt(accumulator) + parseInt(currentValue) : 0
+                !isNaN(accumulator) ? parseInt(accumulator) + parseInt(currentValue) : 0
             const rowKeys = Object.values(row)
-            console.log(row.Region, rowKeys.reduce(reducer, 0))
 
             const {
                 Regiones,
@@ -24,7 +23,7 @@ export default function Table() {
             const formatDigit = number => toDigit({ locale, number })
 
             return {
-                Regiones: row.Region,
+                Regiones: `${row.Region} (${row.Dosis})`,
                 DosisEntregadasPorRegion: formatDigit(rowKeys.reduce(reducer, 0)),
                 ...rest
             }

@@ -2,10 +2,22 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from 'styles/Home.module.css'
 import data from 'data/latest.json'
+import trademarkData from 'data/trademark_latest.json'
 import NumberDigits from 'components/NumberDigits'
 import TimeAgo from 'components/TimeAgo'
 import Table from 'components/Table'
 import Footer from 'components/Footer'
+
+const trademark = trademarkData
+// console.log(trademark)
+const totalDosisPfizer = trademark.filter(el => el.Fabricante === 'Pfizer')
+const totalDosisSinovac = trademark.filter(el => el.Fabricante === 'Sinovac')
+
+const totalPrimeraDosisPfizer = totalDosisPfizer[0]
+const totalSegundaDosisPfizer = totalDosisPfizer[1]
+
+const totalPrimeraDosisSinovac = totalDosisSinovac[0]
+const totalSegundaDosisSinovac = totalDosisSinovac[1]
 
 const totales = data
 const totalDosisPais = totales.filter(total => total.Region === 'Total')
@@ -15,12 +27,28 @@ const totalSegundaDosis = totalDosisPais[1]
 const keysTotalPrimeraDosis = Object.values(totalPrimeraDosis)
 const keysTotalSegundaDosis = Object.values(totalSegundaDosis)
 
+const keysTotalPrimeraPfizer = Object.values(totalPrimeraDosisPfizer)
+const keysTotalSegundaPfizer = Object.values(totalSegundaDosisPfizer)
+
+const keysTotalPrimeraSinovac = Object.values(totalPrimeraDosisSinovac)
+const keysTotalSegundaSinovac = Object.values(totalSegundaDosisSinovac)
+
+
+
 const reducer = (accumulator, currentValue) =>
   !isNaN(accumulator) ? parseInt(accumulator) + parseInt(currentValue) : 0
 const totalPrimeraDosisAdministrada = keysTotalPrimeraDosis.reduce(reducer, 0)
 const totalSegundaDosisAdministrada = keysTotalSegundaDosis.reduce(reducer, 0)
 
-console.log('>>> Revisar:', totalPrimeraDosisAdministrada)
+const totalPrimerasAdministradasPfizer = keysTotalPrimeraPfizer.reduce(reducer, 0)
+const totalSegundasAdministradasPfizer = keysTotalSegundaPfizer.reduce(reducer, 0)
+const totalAdministradasPfizer = totalPrimerasAdministradasPfizer + totalSegundasAdministradasPfizer
+
+const totalPrimerasAdministradasSinovac = keysTotalPrimeraSinovac.reduce(reducer, 0)
+const totalSegundasAdministradasSinovac = keysTotalSegundaSinovac.reduce(reducer, 0)
+const totalAdministradasSinovac = totalPrimerasAdministradasSinovac + totalSegundasAdministradasSinovac
+
+// console.log('>>> Revisar:', totalPrimeraDosisAdministrada)
 
 export default function Home({ info }) {
   return (
@@ -56,7 +84,7 @@ export default function Home({ info }) {
                 <h3>Dosis Administradas</h3>
                 <p>
                   <NumberDigits>
-                    {'33333'}
+                    {totalAdministradasPfizer + totalAdministradasSinovac}
                   </NumberDigits>
                 </p>
               </div>
@@ -64,13 +92,13 @@ export default function Home({ info }) {
                 <small>
                   <img className={styles.companyLogo} src='pfizer-logo.png' />
                   <NumberDigits>
-                    {'33333'}
+                    {totalAdministradasPfizer}
                   </NumberDigits>
                 </small>
                 <small>
                   <img className={styles.companyLogo} src='sinovac-logo.png' />
                   <NumberDigits>
-                    {'33333'}
+                    {totalAdministradasSinovac}
                   </NumberDigits>
                 </small>
               </div>
