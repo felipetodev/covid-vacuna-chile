@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 html,
 body {
   padding: 0;
@@ -6,11 +10,19 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+body {
+  background-color: #fefefe;
+  background-image:  radial-gradient(#cdd0ff 1px, transparent 1px), radial-gradient(#cdd0ff 1px, #fefefe 1px);
+  background-size: 40px 40px;
+  background-position: 0 0,20px 20px;
+}
+
 a {
   color: inherit;
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
+li {
+  padding-bottom: 16px;
+  font-size: 1.2rem;
 }
