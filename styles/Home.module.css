@@ -113,6 +113,7 @@
 }
 
 .card h4 {
+  display: block;
   color: #888;
   font-size: 1.3rem;
   margin: 1rem 0 0;
@@ -123,6 +124,11 @@
   margin: 0;
   font-size: 2rem;
   line-height: 1.5;
+}
+
+.card .primary {
+  display: flex;
+  flex-direction: column;
 }
 
 .card .secondary {
@@ -151,6 +157,7 @@
 
 @media (max-width: 600px) {
   .grid {
+    grid-template-columns: 1fr;
     width: 100%;
     flex-direction: column;
   }

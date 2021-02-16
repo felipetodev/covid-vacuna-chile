@@ -4,12 +4,12 @@ import styles from 'styles/Home.module.css'
 import data from 'data/latest.json'
 import trademarkData from 'data/trademark_latest.json'
 import NumberDigits from 'components/NumberDigits'
+import NumberPercentage from 'components/NumberPercentage'
 import TimeAgo from 'components/TimeAgo'
 import Table from 'components/Table'
 import Footer from 'components/Footer'
 
 const trademark = trademarkData
-// console.log(trademark)
 const totalDosisPfizer = trademark.filter(el => el.Fabricante === 'Pfizer')
 const totalDosisSinovac = trademark.filter(el => el.Fabricante === 'Sinovac')
 
@@ -55,15 +55,32 @@ export default function Home({ info }) {
     <div className={styles.container}>
       <Head>
         <title>Estado y progreso vacunación COVID-19 Chile 2021</title>
+        <meta
+          name='description'
+          content='Consulta el estado y progreso de la vacunación del COVID-19 de forma diaria según datos del gobierno'
+        />
+        <meta property='og:locale' content='es' />
+        <meta property='og:title' content='Estado y progreso vacunación COVID-19 Chile 2021' />
+        <meta property='og:image' content='og.png' />
+        <meta property='og:description' content='Consulta el estado y progreso de la vacunación del COVID-19 de forma diaria según datos del gobierno' />
+        <meta property='og:site_name' content='Estado vacunación en Chile' />
+
+        <meta name='twitter:card' content='summary_large_image' />
+        <meta name='twitter:creator' content='fe_ossandon' />
+        <meta name='twitter:description' content='Consulta el estado y progreso de la vacunación del COVID-19 de forma diaria según datos del gobierno' />
+        <meta name='twitter:site' content='fe_ossandon' />
+        <meta name='twitter:title' content='Estado y progreso vacunación COVID-19 Chile 2021' />
+        <meta property='twitter:domain' content='covid-vacuna-chile.vercel.app' />
+        <meta property='twitter:url' content='https://covid-vacuna-chile.vercel.app/' />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Vacunación COVID-19 en Chile<br/> <small>⚠️ en construcción ⚠️</small></h1>
+        <h1 className={styles.title}>Vacunación COVID-19 en Chile<br /> <small>⚠️ en construcción ⚠️</small></h1>
         <small className={styles.description}>
           Datos actualizados hace <TimeAgo timestamp={info.lastModified} />.
           {' '}
-          <a href='https://www.minciencia.gob.cl/covid19'>
+          <a target='_blank' rel='noreferrer' href='https://www.minciencia.gob.cl/covid19'>
             Fuente: Ministerio de Ciencia
           </a>
         </small>
@@ -116,25 +133,21 @@ export default function Home({ info }) {
             </header>
             <section>
               <div>
-                <h3>Dosis Administradas</h3>
+                <h3>Personas con pauta completa</h3>
                 <p>
                   <NumberDigits>
-                    {totalPrimeraDosisAdministrada + totalSegundaDosisAdministrada}
+                    {totalSegundaDosisAdministrada}
                   </NumberDigits>
                 </p>
               </div>
               <div>
-                <small>
-                  <span>Primera Dosis:</span>
-                  <NumberDigits>
-                    {totalPrimeraDosisAdministrada}
-                  </NumberDigits>
-                </small>
-                <small>
-                  <span>Segunda Dosis:</span>
-                  <NumberDigits>
-                    {totalSegundaDosisAdministrada}
-                  </NumberDigits>
+                <small className={styles.primary}>
+                  <h4>% sobre administradas</h4>
+                  <p className={styles.secondary}>
+                    <NumberPercentage>
+                      {totalSegundaDosisAdministrada / (totalPrimeraDosisAdministrada + totalSegundaDosisAdministrada)}
+                    </NumberPercentage>
+                  </p>
                 </small>
               </div>
             </section>

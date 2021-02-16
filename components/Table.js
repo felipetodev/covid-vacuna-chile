@@ -9,7 +9,6 @@ export default function Table() {
 
     const tableData = useMemo(
         () => data.map(row => {
-            // console.log(row)
             const reducer = (accumulator, currentValue) =>
                 !isNaN(accumulator) ? parseInt(accumulator) + parseInt(currentValue) : 0
             const rowKeys = Object.values(row)
