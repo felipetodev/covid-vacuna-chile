@@ -1,29 +1,27 @@
 import { useMemo } from 'react'
 import { useTable, useSortBy } from 'react-table'
 import { toDigit } from './NumberDigits'
-import data from 'data/latest.json'
+import { dataDosisAdministradas } from 'public/data/logic'
 import styles from '../styles/Table.module.css'
 
 export default function Table() {
     const locale = 'es'
 
     const tableData = useMemo(
-        () => data.map(row => {
-            const reducer = (accumulator, currentValue) =>
-                !isNaN(accumulator) ? parseInt(accumulator) + parseInt(currentValue) : 0
-            const rowKeys = Object.values(row)
-
+        () => dataDosisAdministradas.map(row => {
             const {
                 Regiones,
-                DosisEntregadasPorRegion,
+                PrimeraDosisAdministrada,
+                SegundaDosisAdministrada,
                 ...rest
             } = row
 
             const formatDigit = number => toDigit({ locale, number })
 
             return {
-                Regiones: `${row.Region} (${row.Dosis})`,
-                DosisEntregadasPorRegion: formatDigit(rowKeys.reduce(reducer, 0)),
+                Regiones: row[3],
+                PrimeraDosisAdministrada: formatDigit(row[2]),
+                SegundaDosisAdministrada: formatDigit(row[1]),
                 ...rest
             }
 
@@ -37,8 +35,13 @@ export default function Table() {
                 accessor: 'Regiones'
             },
             {
-                Header: 'Dosis entregadas',
-                accessor: 'DosisEntregadasPorRegion',
+                Header: 'Primeras Dosis Administradas',
+                accessor: 'PrimeraDosisAdministrada',
+                format: 'digit'
+            },
+            {
+                Header: 'Segundas Dosis Administradas',
+                accessor: 'SegundaDosisAdministrada',
                 format: 'digit'
             }
         ],

@@ -1,15 +1,18 @@
 import { useState } from 'react'
-import styles from '../styles/Progress.module.css'
 import { toPercentage } from 'components/NumberPercentage'
+import population from 'public/data/bbdd.json'
+import styles from '../styles/Progress.module.css'
+
+const { Total } = population.population
 
 const FILTERS = {
     parcial: 'porcentajePoblacionAdministradas',
     completa: 'porcentajePoblacionCompletas'
 }
 
-export default function Progress() {
+export default function Progress({ value }) {
     const locale = 'es'
-    const [ filter, setFilter ] = useState(FILTERS.parcial)
+    const [filter, setFilter] = useState(FILTERS.parcial)
 
     return (
         <>
@@ -24,19 +27,10 @@ export default function Progress() {
                         />
                 Ver población vacunada
               </label>
-                    <label>
-                        <input
-                            checked={filter === FILTERS.completa}
-                            name='filter'
-                            onChange={() => setFilter(FILTERS.completa)}
-                            type='radio'
-                        />
-                Ver población con pauta completa
-              </label>
                 </div>
 
-                <section data-value={toPercentage({ locale, number: value })}>
-                    <progress max='100' value={value} />
+                <section data-value={toPercentage({ locale, number: value / Total })}>
+                    <progress max='100' value={value / Total} />
                 </section>
             </form>
         </>

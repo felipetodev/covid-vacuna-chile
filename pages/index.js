@@ -1,47 +1,21 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from 'styles/Home.module.css'
-import data from 'data/latest.json'
-import trademarkData from 'data/trademark_latest.json'
 import NumberDigits from 'components/NumberDigits'
 import NumberPercentage from 'components/NumberPercentage'
 import TimeAgo from 'components/TimeAgo'
 import Table from 'components/Table'
 import Footer from 'components/Footer'
-
-/* Datos por Distribucion */
-const totales = data
-
-const totalDosisPais = totales.filter(total => total.Region === 'Total')
-const totalPrimeraDosis = totalDosisPais[0]
-const totalSegundaDosis = totalDosisPais[1]
-
-// Ultimos datos de Primeras Dosis Distribuidas
-const primeraDayKey = Object.entries(totalPrimeraDosis)
-const actualPrimeraDayData = parseInt(primeraDayKey[primeraDayKey.length-1][1])
-// Ultimos datos de Segundas Dosis Distribuidas
-const segundaDayKey = Object.entries(totalSegundaDosis)
-const actualSegundaDayData = parseInt(segundaDayKey[segundaDayKey.length-1][1])
-
-/* Datos por marca Vacuna */
-const trademark = trademarkData
-const totalDosisPfizer = trademark.filter(marca => marca.Fabricante === 'Pfizer')
-const totalDosisSinovac = trademark.filter(marca => marca.Fabricante === 'Sinovac')
-
-// Ultimos datos de Primeras Dosis Vacunas Pfizer
-const pfizerPrimeraKey = Object.entries(totalDosisPfizer[0])
-const actualPfizerPrimeraDayData = parseInt(pfizerPrimeraKey[pfizerPrimeraKey.length-1][1])
-// Ultimos datos de Segunda Dosis Vacunas Pfizer
-const pfizerSegundaKey = Object.entries(totalDosisPfizer[1])
-const actualPfizerSegundaDayData = parseInt(pfizerSegundaKey[pfizerSegundaKey.length-1][1])
-
-// Ultimos datos de Primeras Dosis Vacunas Pfizer
-const sinovacPrimeraKey = Object.entries(totalDosisSinovac[0])
-const actualSinovacPrimeraDayData = parseInt(sinovacPrimeraKey[sinovacPrimeraKey.length-1][1])
-// Ultimos datos de Segunda Dosis Vacunas Pfizer
-const sinovacSegundaKey = Object.entries(totalDosisSinovac[1])
-const actualSinovacSegundaDayData = parseInt(sinovacSegundaKey[sinovacSegundaKey.length-1][1])
-
+import Progress from 'components/Progress'
+import {
+  dosisAdministradasTotal,
+  actualPrimeraDayData, 
+  actualSegundaDayData,
+  actualPfizerPrimeraDayData,
+  actualPfizerSegundaDayData,
+  actualSinovacPrimeraDayData,
+  actualSinovacSegundaDayData
+} from 'public/data/logic'
 
 export default function Home({ info }) {
   return (
@@ -69,7 +43,7 @@ export default function Home({ info }) {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Vacunación COVID-19 en Chile<br /> <small>⚠️ en construcción ⚠️</small></h1>
+        <h1 className={styles.title}>Vacunación COVID-19 en Chile</h1>
         <small className={styles.description}>
           Datos actualizados hace <TimeAgo timestamp={info.lastModified} />.
           {' '}
@@ -94,7 +68,7 @@ export default function Home({ info }) {
                 <h3>Dosis Administradas</h3>
                 <p>
                   <NumberDigits>
-                    {actualPrimeraDayData + actualSegundaDayData}
+                    {dosisAdministradasTotal}
                   </NumberDigits>
                 </p>
               </div>
@@ -147,6 +121,9 @@ export default function Home({ info }) {
           </div>
 
         </div>
+        
+        <Progress value={dosisAdministradasTotal}/>
+        
         <a className={styles.download} download href='/data/latest.json'>
           <Image
             width={32}
@@ -156,6 +133,7 @@ export default function Home({ info }) {
           />
           Descargar últimos datos en formato JSON
         </a>
+
       </main>
       <Table />
       <Footer />
