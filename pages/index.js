@@ -26,6 +26,7 @@ export default function Home({ info }) {
           name='description'
           content='Consulta el estado y progreso de la vacunación del COVID-19 de forma diaria según datos del gobierno'
         />
+        <meta name='theme-color' content='#d2effd' />
         <meta property='og:locale' content='es' />
         <meta property='og:title' content='Estado y progreso vacunación COVID-19 Chile 2021' />
         <meta property='og:image' content='og.png' />
@@ -45,7 +46,7 @@ export default function Home({ info }) {
       <main className={styles.main}>
         <h1 className={styles.title}>Vacunación COVID-19 en Chile</h1>
         <small className={styles.description}>
-          Datos actualizados hace <TimeAgo timestamp={info.lastModified} />.
+          Datos actualizados <TimeAgo timestamp={info.lastModified} />.
           {' '}
           <a target='_blank' rel='noreferrer' href='https://www.minciencia.gob.cl/covid19'>
             Fuente: Ministerio de Ciencia
