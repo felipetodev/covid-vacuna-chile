@@ -18,8 +18,6 @@ export default function Table() {
 
             const formatDigit = number => toDigit({ locale, number })
 
-            // console.log(parseInt('2808'))
-
             return {
                 Regiones: row[3],
                 PrimeraDosisAdministrada: formatDigit(row[2]),
