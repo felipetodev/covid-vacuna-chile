@@ -9,7 +9,7 @@ export default function Footer () {
           target='_blank'
           rel='noreferrer'
         >
-          Adaptado por{' '}
+          Desarrollado por{' '}
           <span>@felipetodev</span>
         </a>
         <span>&bull;</span>

@@ -16,6 +16,7 @@ import {
   actualSinovacPrimeraDayData,
   actualSinovacSegundaDayData
 } from 'public/data/logic'
+import Prevision from 'components/Prevision'
 
 export default function Home({ info }) {
   return (
@@ -123,7 +124,8 @@ export default function Home({ info }) {
 
         </div>
         
-        <Progress value={dosisAdministradasTotal}/>
+        <Progress />
+        <Prevision />
         
         <a className={styles.download} download href='/data/latest.json'>
           <Image
