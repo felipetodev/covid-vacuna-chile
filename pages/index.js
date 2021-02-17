@@ -94,7 +94,7 @@ export default function Home({ info }) {
           <div className={styles.card}>
             <header>
               <Image
-                src='/vacuna.png'
+                src='/vacunas-completas.png'
                 alt='Vacunas administradas en Chile'
                 width={150}
                 height={150}
@@ -127,7 +127,7 @@ export default function Home({ info }) {
         <Progress />
         <Prevision />
         
-        <a className={styles.download} download href='/data/latest.json'>
+        <a className={styles.download} download href='../data/latest.json'>
           <Image
             width={32}
             height={32}

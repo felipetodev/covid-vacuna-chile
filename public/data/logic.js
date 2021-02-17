@@ -41,7 +41,7 @@ export const actualPfizerSegundaDayData = parseInt(pfizerSegundaKey[pfizerSegund
 export const actualSinovacSegundaDayData = parseInt(sinovacSegundaKey[sinovacSegundaKey.length - 1][1])
 export const dosisCompletasAdministradas = parseInt(actualPfizerSegundaDayData + actualSinovacSegundaDayData)
 export const porcentajePoblacionAdministradas = dosisAdministradasTotal / population
-export const porcentajePoblacionCompletas = (actualPfizerSegundaDayData + actualSinovacSegundaDayData) / population
+export const porcentajePoblacionCompletas = dosisCompletasAdministradas / population
 
 /*** Tabla ***/
 
