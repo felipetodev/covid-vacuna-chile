@@ -12,7 +12,7 @@ npm run dev # levantar el entorno de desarrollo
 ```
 
 **Unos enlaces para entender mejor la app:**
-Esta idea y el proyecto nace de una serie de lives en Twitch y aportes de toda la comunidad del Desarrollador `https://midu.dev/` 👌 en la cual se desarrolló y se sigue desarrollando un proyecto similar para el estado de vacunación que se estaba llevando a cabo en España. Por lo que tuve como idea, tomar desafío, el reto de desarrollar esta App según las bases de datos disponibles sobre el estado de vacunación actual en Chile.
+Esta idea y el proyecto nace de una serie de lives en [Twitch](https://www.twitch.tv/midudev) y aportes de toda la comunidad del Desarrollador [@midudev](https://midu.dev/) 👌 en la cual se desarrolló y se sigue desarrollando un proyecto similar para el estado de vacunación que se esta llevando a cabo en España. Por lo que tuve como idea desarrollar esta App según las bases de datos disponibles sobre el estado de vacunación actual en Chile.
 
 ## ¿Aceptas Pull Request?
 

@@ -18,6 +18,8 @@ export default function Table() {
 
             const formatDigit = number => toDigit({ locale, number })
 
+            // console.log(parseInt('2808'))
+
             return {
                 Regiones: row[3],
                 PrimeraDosisAdministrada: formatDigit(row[2]),
@@ -48,13 +50,15 @@ export default function Table() {
         []
     )
 
-    const {
+    let {
         getTableProps,
         getTableBodyProps,
         headerGroups,
         rows,
         prepareRow
     } = useTable({ columns, data: tableData }, useSortBy)
+
+    rows = [...rows.filter(row => row.id !== '0'), rows.find(row => row.id === '0')]
 
     return (
         <table className={styles.table} {...getTableProps()}>
@@ -81,8 +85,12 @@ export default function Table() {
             <tbody {...getTableBodyProps()}>
                 {rows.map(row => {
                     prepareRow(row)
+                    const className = row.id === '0'
+                        ? styles.totales
+                        : ''
+
                     return (
-                        <tr {...row.getRowProps()}>
+                        <tr {...row.getRowProps()} className={className}>
                             {row.cells.map(cell => {
                                 return (
                                     <td {...cell.getCellProps()}>

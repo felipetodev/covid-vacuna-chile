@@ -57,6 +57,6 @@ export const dataDosisAdministradas = mapRegionNew.map(el => {
     // Total Segundas Dosis por Region
     const dataKeySegunda = Object.entries(filterData[1])
     const dataTotal = dataKeySegunda[dataKeySegunda.length - 1].concat(dataKeyPrimera[dataKeyPrimera.length - 1][1]).concat(dataKeyPrimera[0][1])
-
+    console.log(dataTotal)
     return dataTotal
 })

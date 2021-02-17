@@ -7,6 +7,15 @@
     font-weight: 500;
     line-height: 150%;
     margin-right: 1rem;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 6px;
+}
+
+.progress label:hover {
+    background-color: #d2effd;
 }
   
 .progress div {
