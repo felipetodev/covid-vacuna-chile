@@ -71,6 +71,10 @@
   border-bottom: 1px dashed #ddd;
 }
 
+.download:last-child {
+  margin-bottom: 2rem;
+}
+
 .download:hover {
   color: #555;
   border-bottom: 1px dashed #09f;

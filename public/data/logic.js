@@ -34,7 +34,7 @@ const sinovacSegundaKey = Object.entries(totalDosisSinovac[1])
 
 export const actualPrimeraDayData = parseInt(primeraDayKey[primeraDayKey.length - 1][1])
 export const actualSegundaDayData = parseInt(segundaDayKey[segundaDayKey.length - 1][1])
-export const dosisAdministradasTotal = actualPrimeraDayData + actualSegundaDayData
+export const dosisAdministradasTotal = parseInt(actualPrimeraDayData + actualSegundaDayData)
 export const actualPfizerPrimeraDayData = parseInt(pfizerPrimeraKey[pfizerPrimeraKey.length - 1][1])
 export const actualSinovacPrimeraDayData = parseInt(sinovacPrimeraKey[sinovacPrimeraKey.length - 1][1])
 export const actualPfizerSegundaDayData = parseInt(pfizerSegundaKey[pfizerSegundaKey.length - 1][1])

@@ -9,7 +9,7 @@ import Footer from 'components/Footer'
 import Progress from 'components/Progress'
 import {
   dosisAdministradasTotal,
-  actualPrimeraDayData, 
+  actualPrimeraDayData,
   actualSegundaDayData,
   actualPfizerPrimeraDayData,
   actualPfizerSegundaDayData,
@@ -17,6 +17,7 @@ import {
   actualSinovacSegundaDayData
 } from 'public/data/logic'
 import Prevision from 'components/Prevision'
+import Link from 'next/link'
 
 export default function Home({ info }) {
   return (
@@ -114,7 +115,7 @@ export default function Home({ info }) {
                   <h4>% sobre administradas</h4>
                   <p className={styles.secondary}>
                     <NumberPercentage>
-                      {(actualPfizerSegundaDayData + actualSinovacSegundaDayData)/(actualPrimeraDayData + actualSegundaDayData)}
+                      {(actualPfizerSegundaDayData + actualSinovacSegundaDayData) / (actualPrimeraDayData + actualSegundaDayData)}
                     </NumberPercentage>
                   </p>
                 </small>
@@ -123,11 +124,11 @@ export default function Home({ info }) {
           </div>
 
         </div>
-        
+
         <Progress />
         <Prevision />
-        
-        <a className={styles.download} download href='../data/latest.json'>
+
+        <a className={styles.download} download href='/data/latest.json'>
           <Image
             width={32}
             height={32}
@@ -136,6 +137,18 @@ export default function Home({ info }) {
           />
           Descargar últimos datos en formato JSON
         </a>
+
+        <Link href='/como-incrustar'>
+          <a className={styles.download}>
+            <Image
+              width={32}
+              height={32}
+              src='/embed.png'
+              alt='incrustar datos de vacunación'
+            />
+            Quiero incrustar los datos de vacunación en otra página web
+          </a>
+        </Link>
 
       </main>
       <Table />
