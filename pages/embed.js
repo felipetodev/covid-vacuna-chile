@@ -58,7 +58,7 @@ export default function Embed({ actualPrimeraDayData, actualSegundaDayData, dosi
                 </small>
 
                 <small className={styles.by}>
-                    <a href='https://covid-vacuna-chile-vercel.app' target='_blank' rel='nofollow noreferrer'><strong>covid-vacuna-chile-vercel.app</strong></a> - Datos actualizados <TimeAgo timestamp={info.lastModified} />
+                    <a href='https://covid-vacuna-chile.vercel.app' target='_blank' rel='nofollow noreferrer'><strong>covid-vacuna-chile.vercel.app</strong></a> - Datos actualizados <TimeAgo timestamp={info.lastModified} />
                 </small>
 
             </div>

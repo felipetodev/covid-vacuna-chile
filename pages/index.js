@@ -7,19 +7,10 @@ import TimeAgo from 'components/TimeAgo'
 import Table from 'components/Table'
 import Footer from 'components/Footer'
 import Progress from 'components/Progress'
-import {
-  dosisAdministradasTotal,
-  actualPrimeraDayData,
-  actualSegundaDayData,
-  actualPfizerPrimeraDayData,
-  actualPfizerSegundaDayData,
-  actualSinovacPrimeraDayData,
-  actualSinovacSegundaDayData
-} from 'public/data/logic'
 import Prevision from 'components/Prevision'
 import Link from 'next/link'
 
-export default function Home({ info }) {
+export default function Home({ info, dosisAdministradasTotal, actualPfizerPrimeraDayData, actualPfizerSegundaDayData, actualSinovacPrimeraDayData, actualSinovacSegundaDayData }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -115,7 +106,7 @@ export default function Home({ info }) {
                   <h4>% sobre administradas</h4>
                   <p className={styles.secondary}>
                     <NumberPercentage>
-                      {(actualPfizerSegundaDayData + actualSinovacSegundaDayData) / (actualPrimeraDayData + actualSegundaDayData)}
+                      {(actualPfizerSegundaDayData + actualSinovacSegundaDayData) / dosisAdministradasTotal}
                     </NumberPercentage>
                   </p>
                 </small>
@@ -158,12 +149,22 @@ export default function Home({ info }) {
 }
 
 export async function getStaticProps() {
-  // const data = require('../data/latest.json')
+  const {
+    dosisAdministradasTotal,
+    actualPfizerPrimeraDayData,
+    actualPfizerSegundaDayData,
+    actualSinovacPrimeraDayData,
+    actualSinovacSegundaDayData
+  } = require('../public/data/logic')
   const info = require('../data/info.json')
 
   return {
     props: {
-      // data,
+      dosisAdministradasTotal,
+      actualPfizerPrimeraDayData,
+      actualPfizerSegundaDayData,
+      actualSinovacPrimeraDayData,
+      actualSinovacSegundaDayData,
       info,
     }
   }
