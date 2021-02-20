@@ -1,9 +1,8 @@
 import data from 'data/latest.json'
 import trademarkData from 'data/trademark_latest.json'
+import { populationOver18 } from 'public/data/bbdd.json'
 
 /*** Index ****/
-
-const population = 18730000
 const totales = data
 
 const totalDosisPais = totales.filter(total => total.Region === 'Total')
@@ -40,13 +39,14 @@ export const actualSinovacPrimeraDayData = parseInt(sinovacPrimeraKey[sinovacPri
 export const actualPfizerSegundaDayData = parseInt(pfizerSegundaKey[pfizerSegundaKey.length - 1][1])
 export const actualSinovacSegundaDayData = parseInt(sinovacSegundaKey[sinovacSegundaKey.length - 1][1])
 export const dosisCompletasAdministradas = parseInt(actualPfizerSegundaDayData + actualSinovacSegundaDayData)
-export const porcentajePoblacionAdministradas = dosisAdministradasTotal / population
-export const porcentajePoblacionCompletas = dosisCompletasAdministradas / population
+export const porcentajePoblacionAdministradas = dosisAdministradasTotal / populationOver18.Total
+export const porcentajePoblacionCompletas = dosisCompletasAdministradas / populationOver18.Total
 
 /*** Tabla ***/
 
 let mapRegion = data.map(data => data.Region)
 let mapRegionNew = [...new Set(mapRegion)]
+
 
 export const dataDosisAdministradas = mapRegionNew.map(el => {
     const filterData = data.filter(db => db.Region === el)
@@ -56,6 +56,8 @@ export const dataDosisAdministradas = mapRegionNew.map(el => {
 
     // Total Segundas Dosis por Region
     const dataKeySegunda = Object.entries(filterData[1])
-    const dataTotal = dataKeySegunda[dataKeySegunda.length - 1].concat(dataKeyPrimera[dataKeyPrimera.length - 1][1]).concat(dataKeyPrimera[0][1])
+    const dataTotal = dataKeySegunda[dataKeySegunda.length - 1]
+        .concat(dataKeyPrimera[dataKeyPrimera.length - 1][1])
+        .concat(dataKeyPrimera[0][1])
     return dataTotal
 })

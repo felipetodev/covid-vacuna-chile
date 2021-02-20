@@ -1,21 +1,21 @@
 {
-    "population": {
-        "Arica": 226068,
-        "Tarapaca": 330558,
-        "Antofagasta": 607534,
-        "Atacama": 286168,
-        "Coquimbo": 757586,
-        "Valparaiso": 1815902,
-        "Metropolitana": 7112808,
-        "Ohiggins": 914555,
-        "Maule": 1044950,
-        "Ñuble": 480609,
-        "Biobio": 1556805,
-        "Araucania": 957224,
-        "Los Rios": 384837,
-        "Los Lagos": 828708,
-        "Aysén": 103158,
-        "Magallanes": 166533,
-        "Total": 17574033
+    "populationOver18": {
+        "Arica y Parinacota": 192243,
+        "Tarapacá": 286597,
+        "Antofagasta": 529037,
+        "Atacama": 234009,
+        "Coquimbo": 643655,
+        "Valparaíso": 1545222,
+        "Metropolitana": 6430040,
+        "O’Higgins": 768067,
+        "Maule": 878051,
+        "Ñuble": 399678,
+        "Biobío": 1290996,
+        "Araucanía": 777443,
+        "Los Ríos": 315805,
+        "Los Lagos": 688814,
+        "Aysén": 80150,
+        "Magallanes": 141033,
+        "Total": 15200840
     }
 }

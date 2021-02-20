@@ -3,9 +3,7 @@ import NumberDigits from 'components/NumberDigits'
 import NumberPercentage from 'components/NumberPercentage'
 import TimeAgo from 'components/TimeAgo'
 
-const population = 18730000
-
-export default function Embed({ actualPrimeraDayData, actualSegundaDayData, dosisAdministradasTotal, dosisCompletasAdministradas, info }) {
+export default function Embed({ totalPopulation, actualPrimeraDayData, actualSegundaDayData, dosisAdministradasTotal, dosisCompletasAdministradas, info }) {
     
     return (
         <>
@@ -25,7 +23,7 @@ export default function Embed({ actualPrimeraDayData, actualSegundaDayData, dosi
                             </p>
                         </div>
                         <p>
-                            Supone el <strong><NumberPercentage>{dosisAdministradasTotal/population}</NumberPercentage></strong> del total de Chile<br />
+                            Supone el <strong><NumberPercentage>{dosisAdministradasTotal/totalPopulation}</NumberPercentage></strong> del total de Chile<br />
                             <strong><NumberPercentage>{actualPrimeraDayData / dosisAdministradasTotal}</NumberPercentage></strong> corresponde a primeras dosis<br />
                             <strong><NumberPercentage>{actualSegundaDayData / dosisAdministradasTotal}</NumberPercentage></strong> corresponde a segundas dosis<br />
                         </p>
@@ -48,7 +46,7 @@ export default function Embed({ actualPrimeraDayData, actualSegundaDayData, dosi
                         </div>
                         <p>
                             Personas que han recibido las dos dosis de la vacuna.<br />
-                            Suponen un <strong><NumberPercentage>{dosisCompletasAdministradas/dosisAdministradasTotal}</NumberPercentage></strong> de las dosis administradas.<br />Supone el <strong><NumberPercentage>{dosisCompletasAdministradas/population}</NumberPercentage></strong> del total de Chile
+                            Suponen un <strong><NumberPercentage>{dosisCompletasAdministradas/dosisAdministradasTotal}</NumberPercentage></strong> de las dosis administradas.<br />Supone el <strong><NumberPercentage>{dosisCompletasAdministradas/totalPopulation}</NumberPercentage></strong> del total de Chile
                         </p>
                     </section>
                 </div>
@@ -74,7 +72,7 @@ export async function getStaticProps() {
         actualSegundaDayData,
     } = require('../public/data/logic')
     const info = require('../data/info.json')
-    const { population: { Total } } = require('../public/data/bbdd.json')
+    const { populationOver18: { Total } } = require('../public/data/bbdd.json')
 
     return {
         props: {

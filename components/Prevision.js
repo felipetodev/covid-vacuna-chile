@@ -1,4 +1,6 @@
-import { porcentajePoblacionAdministradas, porcentajePoblacionCompletas } from 'public/data/logic'
+import { newData } from 'public/data/test'
+
+const { porcentajePoblacionAdministradas , porcentajePoblacionCompletas } = newData[0]
 
 const START_DATA_VACCINATION = '12/24/2020'
 const MILISECONDS_DAY = 1000 * 60 * 60 * 24

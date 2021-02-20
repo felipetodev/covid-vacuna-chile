@@ -9,6 +9,7 @@ import Footer from 'components/Footer'
 import Progress from 'components/Progress'
 import Prevision from 'components/Prevision'
 import Link from 'next/link'
+import { json } from 'public/data/test'
 
 export default function Home({ info, dosisAdministradasTotal, actualPfizerPrimeraDayData, actualPfizerSegundaDayData, actualSinovacPrimeraDayData, actualSinovacSegundaDayData }) {
   return (

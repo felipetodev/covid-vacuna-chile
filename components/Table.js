@@ -1,30 +1,34 @@
 import { useMemo } from 'react'
 import { useTable, useSortBy } from 'react-table'
 import { toDigit } from './NumberDigits'
-import { dataDosisAdministradas } from 'public/data/logic'
+import { toPercentage } from './NumberPercentage'
+import { newData } from 'public/data/test'
 import styles from '../styles/Table.module.css'
 
 export default function Table() {
     const locale = 'es'
+    const formatDigit = number => toDigit({ locale, number })
+    const formatPercentage = number => toPercentage({ locale, number })
 
     const tableData = useMemo(
-        () => dataDosisAdministradas.map(row => {
+        () => newData.map(row => {
             const {
-                Regiones,
-                PrimeraDosisAdministrada,
-                SegundaDosisAdministrada,
+                Region,
+                primerasDosisAdministradas,
+                segundasDosisAdministradas,
+                porcentajePoblacionAdministradas,
+                porcentajePoblacionCompletas,
                 ...rest
             } = row
 
-            const formatDigit = number => toDigit({ locale, number })
-
             return {
-                Regiones: row[3],
-                PrimeraDosisAdministrada: formatDigit(row[2]),
-                SegundaDosisAdministrada: formatDigit(row[1]),
+                Regiones: Region,
+                dosisAdministradas: formatDigit(primerasDosisAdministradas+segundasDosisAdministradas),
+                segundasDosisAdministradas: formatDigit(segundasDosisAdministradas),
+                porcentajePoblacionAdministradas: formatPercentage(porcentajePoblacionAdministradas-porcentajePoblacionCompletas),
+                porcentajePoblacionCompletas: formatPercentage(porcentajePoblacionCompletas),
                 ...rest
             }
-
         }), []
     )
 
@@ -35,14 +39,24 @@ export default function Table() {
                 accessor: 'Regiones'
             },
             {
-                Header: 'Primeras Dosis Administradas',
-                accessor: 'PrimeraDosisAdministrada',
-                format: 'digit'
+                Header: 'Dosis Administradas',
+                accessor: 'dosisAdministradas',
+                format: formatDigit
             },
             {
-                Header: 'Segundas Dosis Administradas',
-                accessor: 'SegundaDosisAdministrada',
-                format: 'digit'
+                Header: '% Poblacion Vacunada',
+                accessor: 'porcentajePoblacionAdministradas',
+                format: formatPercentage
+            },
+            {
+                Header: 'Pauta Completa',
+                accessor: 'segundasDosisAdministradas',
+                format: formatDigit
+            },
+            {
+                Header: '% Poblacion Totalmente Vacunada',
+                accessor: 'porcentajePoblacionCompletas',
+                format: formatPercentage
             }
         ],
         []
