@@ -1,10 +1,8 @@
 import data from 'data/latest.json'
-import trademarkData from 'data/trademark_latest.json'
 import { populationOver18 } from 'public/data/bbdd.json'
 
 let jsonUNO = data.filter(element => element.Dosis === 'Primera')
 let jsonDOS = data.filter(element => element.Dosis === 'Segunda')
-
 
 const datosPrimerasDosis = jsonUNO.map(element => {
     let keys = Object.entries(element)
@@ -15,9 +13,8 @@ const datosPrimerasDosis = jsonUNO.map(element => {
     const {
         'Region': Region,
     } = element
-
-    const normalizedRegion = Region.trim()
-    const populationRegion = populationOver18[normalizedRegion]
+    
+    const populationRegion = populationOver18[Region]
 
     return {
         Region,
@@ -26,7 +23,6 @@ const datosPrimerasDosis = jsonUNO.map(element => {
         poblacionOver18: populationRegion
     }
 })
-
 
 let datosSegundasDosis = jsonDOS.map(element => {
     let keys = Object.entries(element)
