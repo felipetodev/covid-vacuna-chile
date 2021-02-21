@@ -145,9 +145,35 @@ export default function Home({ info, dosisAdministradasTotal, actualPfizerPrimer
             Quiero incrustar los datos de vacunación en otra página web
           </a>
         </Link>
-
       </main>
+
+      <h2 className={styles.subtitle}>Por regiones</h2>
       <Table />
+
+      <h2 className={styles.subtitle}>Enlaces de interés</h2>
+      <ul>
+        <li>
+          <a
+            className={styles.link}
+            target='_blank'
+            rel='noreferrer'
+            href='https://www.gob.cl/yomevacuno'
+          >
+            Plan nacional de vacunación COVID-19 en Chile
+            </a>
+        </li>
+        <li>
+          <a
+            className={styles.link}
+            target='_blank'
+            rel='noreferrer'
+            href='https://www.gob.cl/yomevacuno/vacunatorios'
+          >
+            Busca tu local de vacunación más cercano
+            </a>
+        </li>
+      </ul>
+
       <Share />
       <Footer />
     </div>
