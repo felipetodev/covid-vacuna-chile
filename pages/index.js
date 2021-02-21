@@ -9,6 +9,7 @@ import Footer from 'components/Footer'
 import Progress from 'components/Progress'
 import Prevision from 'components/Prevision'
 import Link from 'next/link'
+import Share from 'components/Share'
 import { json } from 'public/data/test-vaccinaction'
 
 export default function Home({ info, dosisAdministradasTotal, actualPfizerPrimeraDayData, actualPfizerSegundaDayData, actualSinovacPrimeraDayData, actualSinovacSegundaDayData }) {
@@ -144,6 +145,7 @@ export default function Home({ info, dosisAdministradasTotal, actualPfizerPrimer
 
       </main>
       <Table />
+      <Share />
       <Footer />
     </div>
   )
