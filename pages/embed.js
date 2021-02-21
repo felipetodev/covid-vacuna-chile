@@ -3,8 +3,8 @@ import NumberDigits from 'components/NumberDigits'
 import NumberPercentage from 'components/NumberPercentage'
 import TimeAgo from 'components/TimeAgo'
 
-export default function Embed({ totalPopulation, actualPrimeraDayData, actualSegundaDayData, dosisAdministradasTotal, dosisCompletasAdministradas, info }) {
-    
+export default function Embed({ info, newData }) {
+    const totals = newData.filter(element => element.Region === 'Total')
     return (
         <>
             <div className={styles.embedContainer}>
@@ -19,13 +19,13 @@ export default function Embed({ totalPopulation, actualPrimeraDayData, actualSeg
                         <div>
                             <h3>Dosis administradas:</h3>
                             <p>
-                                <NumberDigits>{dosisAdministradasTotal}</NumberDigits>
+                                <NumberDigits>{totals[0].totalDosisAdministradas}</NumberDigits>
                             </p>
                         </div>
                         <p>
-                            Supone el <strong><NumberPercentage>{dosisAdministradasTotal/totalPopulation}</NumberPercentage></strong> del total de Chile<br />
-                            <strong><NumberPercentage>{actualPrimeraDayData / dosisAdministradasTotal}</NumberPercentage></strong> corresponde a primeras dosis<br />
-                            <strong><NumberPercentage>{actualSegundaDayData / dosisAdministradasTotal}</NumberPercentage></strong> corresponde a segundas dosis<br />
+                            Supone el <strong><NumberPercentage>{totals[0].totalDosisAdministradas / totals[0].poblacionOver18}</NumberPercentage></strong> del total de Chile<br />
+                            <strong><NumberPercentage>{totals[0].primerasDosisAdministradas / totals[0].totalDosisAdministradas}</NumberPercentage></strong> corresponde a primeras dosis<br />
+                            <strong><NumberPercentage>{totals[0].segundasDosisAdministradas / totals[0].totalDosisAdministradas}</NumberPercentage></strong> corresponde a segundas dosis<br />
                         </p>
                     </section>
                 </div>
@@ -41,12 +41,12 @@ export default function Embed({ totalPopulation, actualPrimeraDayData, actualSeg
                         <div>
                             <h3>Pauta completa:</h3>
                             <p>
-                                <NumberDigits>{dosisCompletasAdministradas}</NumberDigits>
+                                <NumberDigits>{totals[0].segundasDosisAdministradas}</NumberDigits>
                             </p>
                         </div>
                         <p>
                             Personas que han recibido las dos dosis de la vacuna.<br />
-                            Suponen un <strong><NumberPercentage>{dosisCompletasAdministradas/dosisAdministradasTotal}</NumberPercentage></strong> de las dosis administradas.<br />Supone el <strong><NumberPercentage>{dosisCompletasAdministradas/totalPopulation}</NumberPercentage></strong> del total de Chile
+                            Suponen un <strong><NumberPercentage>{totals[0].segundasDosisAdministradas / totals[0].totalDosisAdministradas}</NumberPercentage></strong> de las dosis administradas.<br />Supone el <strong><NumberPercentage>{totals[0].segundasDosisAdministradas / totals[0].poblacionOver18}</NumberPercentage></strong> del total de Chile
                         </p>
                     </section>
                 </div>
@@ -66,22 +66,13 @@ export default function Embed({ totalPopulation, actualPrimeraDayData, actualSeg
 
 export async function getStaticProps() {
     const { 
-        dosisCompletasAdministradas, 
-        dosisAdministradasTotal,
-        actualPrimeraDayData,
-        actualSegundaDayData,
-    } = require('../public/data/logic')
+        newData
+    } = require('../public/data/test')
     const info = require('../data/info.json')
-    const { populationOver18: { Total } } = require('../public/data/bbdd.json')
 
     return {
         props: {
-            dosisAdministradasTotal,
-            dosisCompletasAdministradas,
-            actualPrimeraDayData,
-            actualSegundaDayData,
-            dosisCompletasAdministradas,
-            totalPopulation: Total,
+            newData,
             info
         }
     }
