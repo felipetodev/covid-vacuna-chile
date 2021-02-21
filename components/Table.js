@@ -23,9 +23,9 @@ export default function Table() {
 
             return {
                 Regiones: Region,
-                dosisAdministradas: formatDigit(primerasDosisAdministradas+segundasDosisAdministradas),
+                dosisAdministradas: formatDigit(primerasDosisAdministradas + segundasDosisAdministradas),
                 segundasDosisAdministradas: formatDigit(segundasDosisAdministradas),
-                porcentajePoblacionAdministradas: formatPercentage(porcentajePoblacionAdministradas-porcentajePoblacionCompletas),
+                porcentajePoblacionAdministradas: formatPercentage(porcentajePoblacionAdministradas - porcentajePoblacionCompletas),
                 porcentajePoblacionCompletas: formatPercentage(porcentajePoblacionCompletas),
                 ...rest
             }
@@ -110,6 +110,17 @@ export default function Table() {
                                     </td>
                                 )
                             })}
+                            <td className={styles.mobileData}>
+                                {row.cells.map((cell, index) => {
+                                    return (
+                                        <span key={index}>
+                                            {index === 0
+                                                ? ''
+                                                : `${headerGroups[0].headers[index].Header} - ${cell.value}`}
+                                        </span>
+                                    )
+                                })}
+                            </td>
                         </tr>
                     )
                 })}
