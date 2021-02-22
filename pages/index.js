@@ -125,7 +125,7 @@ export default function Home({ info, data, vaccineData }) {
         <Progress totals={totals} />
         <Prevision totals={totals} />
 
-        <a className={styles.download} download href='/data/latest.json'>
+        <a className={styles.download} download href='../data/latest.json'>
           <Image
             width={32}
             height={32}
