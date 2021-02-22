@@ -1,6 +1,6 @@
 const download = require('download')
 const fs = require('fs-extra')
-const transformCsvToJson = require('./transform-csv-to-json')
+const transformCsvVaccineToJson = require('./transform-csv-vaccine-to-json')
 
 const url = 'https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto76/fabricante.csv'
 
@@ -11,14 +11,14 @@ const month = `${date.getMonth() + 1}`.padStart(2, '0')
 
 const filename = `trademark_${day}${month}${year}.csv`
 
-download(url, 'data', { filename })
+download(url, 'public/data', { filename })
     .then(async () => {
         console.log(`${url} downloaded`)
-        const json = await transformCsvToJson(filename)
+        const json = await transformCsvVaccineToJson(filename)
         const jsonFileName = filename.replace('.csv', '.json')
 
-        await fs.writeJson(`./data/${jsonFileName}`, json)
-        await fs.copyFile(`./data/${jsonFileName}`, './data/trademark_latest.json')
+        await fs.writeJson(`./public/data/${jsonFileName}`, json)
+        await fs.copyFile(`./public/data/${jsonFileName}`, './public/data/trademark_latest.json')
     })
     .catch(err => {
         console.error(`${url} can't be downloaded. Error:`)

@@ -1,7 +1,3 @@
-import { newData } from 'public/data/test'
-
-const { porcentajePoblacionAdministradas , porcentajePoblacionCompletas } = newData[0]
-
 const START_DATA_VACCINATION = '12/24/2020'
 const MILISECONDS_DAY = 1000 * 60 * 60 * 24
 const dateTimeFormatOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
@@ -32,20 +28,20 @@ const points = [{
     percentage: 100
 }]
 
-export default function Prevision() {
+export default function Prevision({ totals }) {
     const locale = 'es'
     const intl = new Intl.DateTimeFormat(locale, dateTimeFormatOptions)
 
     const getDays = (days) =>
         getDaysToAchievePercentage(
             days,
-            porcentajePoblacionAdministradas - porcentajePoblacionCompletas
+            totals.porcentajePoblacionAdministradas - totals.porcentajePoblacionCompletas
         )
 
     return (
         <>
             <h2>Estimación población vacunada</h2>
-            {porcentajePoblacionCompletas
+            {totals.porcentajePoblacionCompletas
                 ? (
                     <section>
                         {

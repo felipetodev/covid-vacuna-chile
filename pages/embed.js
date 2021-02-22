@@ -3,8 +3,8 @@ import NumberDigits from 'components/NumberDigits'
 import NumberPercentage from 'components/NumberPercentage'
 import TimeAgo from 'components/TimeAgo'
 
-export default function Embed({ info, newData }) {
-    const totals = newData.filter(element => element.Region === 'Total')
+export default function Embed({ info, data, vaccineData }) {
+    const totals = data.find(({ Region }) => Region === 'Total')
     return (
         <>
             <div className={styles.embedContainer}>
@@ -19,13 +19,13 @@ export default function Embed({ info, newData }) {
                         <div>
                             <h3>Dosis administradas:</h3>
                             <p>
-                                <NumberDigits>{totals[0].totalDosisAdministradas}</NumberDigits>
+                                <NumberDigits>{totals.totalDosisAdministradas}</NumberDigits>
                             </p>
                         </div>
                         <p>
-                            Supone el <strong><NumberPercentage>{totals[0].totalDosisAdministradas / totals[0].poblacionOver18}</NumberPercentage></strong> del total de Chile<br />
-                            <strong><NumberPercentage>{totals[0].primerasDosisAdministradas / totals[0].totalDosisAdministradas}</NumberPercentage></strong> corresponde a primeras dosis<br />
-                            <strong><NumberPercentage>{totals[0].segundasDosisAdministradas / totals[0].totalDosisAdministradas}</NumberPercentage></strong> corresponde a segundas dosis<br />
+                            Supone el <strong><NumberPercentage>{totals.totalDosisAdministradas / totals.poblacionOver18}</NumberPercentage></strong> del total de Chile<br />
+                            <strong><NumberPercentage>{totals.primerasDosisAdministradas / totals.totalDosisAdministradas}</NumberPercentage></strong> corresponde a primeras dosis<br />
+                            <strong><NumberPercentage>{totals.segundasDosisAdministradas / totals.totalDosisAdministradas}</NumberPercentage></strong> corresponde a segundas dosis<br />
                         </p>
                     </section>
                 </div>
@@ -41,12 +41,12 @@ export default function Embed({ info, newData }) {
                         <div>
                             <h3>Pauta completa:</h3>
                             <p>
-                                <NumberDigits>{totals[0].segundasDosisAdministradas}</NumberDigits>
+                                <NumberDigits>{totals.segundasDosisAdministradas}</NumberDigits>
                             </p>
                         </div>
                         <p>
                             Personas que han recibido las dos dosis de la vacuna.<br />
-                            Suponen un <strong><NumberPercentage>{totals[0].segundasDosisAdministradas / totals[0].totalDosisAdministradas}</NumberPercentage></strong> de las dosis administradas.<br />Supone el <strong><NumberPercentage>{totals[0].segundasDosisAdministradas / totals[0].poblacionOver18}</NumberPercentage></strong> del total de Chile
+                            Suponen un <strong><NumberPercentage>{totals.segundasDosisAdministradas / totals.totalDosisAdministradas}</NumberPercentage></strong> de las dosis administradas.<br />Supone el <strong><NumberPercentage>{totals.segundasDosisAdministradas / totals.poblacionOver18}</NumberPercentage></strong> del total de Chile
                         </p>
                     </section>
                 </div>
@@ -65,14 +65,14 @@ export default function Embed({ info, newData }) {
 }
 
 export async function getStaticProps() {
-    const { 
-        newData
-    } = require('../public/data/test')
-    const info = require('../data/info.json')
+    const data = require('../public/data/latest.json')
+    const vaccineData = require('../public/data/trademark_latest.json')
+    const info = require('../public/data/info.json')
 
     return {
         props: {
-            newData,
+            data,
+            vaccineData,
             info
         }
     }

@@ -2,16 +2,15 @@ import { useMemo } from 'react'
 import { useTable, useSortBy } from 'react-table'
 import { toDigit } from './NumberDigits'
 import { toPercentage } from './NumberPercentage'
-import { newData } from 'public/data/test'
 import styles from '../styles/Table.module.css'
 
-export default function Table() {
+export default function Table({ data }) {
     const locale = 'es'
     const formatDigit = number => toDigit({ locale, number })
     const formatPercentage = number => toPercentage({ locale, number })
 
     const tableData = useMemo(
-        () => newData.map(row => {
+        () => data.map(row => {
             const {
                 Region,
                 primerasDosisAdministradas,

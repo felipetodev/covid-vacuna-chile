@@ -1,19 +1,22 @@
 import { useState } from 'react'
 import { toPercentage } from 'components/NumberPercentage'
 import styles from '../styles/Progress.module.css'
-import { newData } from 'public/data/test'
-
-const { porcentajePoblacionAdministradas, porcentajePoblacionCompletas } = newData[0]
+import { getPartialVacunationPopulation, getCompleteVacunationPopulation } from 'services/getProgressCalculation'
 
 const FILTERS = {
-    parcial: (porcentajePoblacionAdministradas - porcentajePoblacionCompletas),
-    completa: porcentajePoblacionCompletas
+    parcial: 0,
+    completa: 1
 }
 
-export default function Progress() {
+const CALCULATIONS = {
+    [FILTERS.parcial]: getPartialVacunationPopulation,
+    [FILTERS.completa]: getCompleteVacunationPopulation
+}
 
+export default function Progress({ totals }) {
     const locale = 'es'
     const [filter, setFilter] = useState(FILTERS.parcial)
+    const value = CALCULATIONS[filter](totals)
 
     return (
         <>
@@ -39,8 +42,8 @@ export default function Progress() {
                     </label>
                 </div>
 
-                <section data-value={toPercentage({ locale, number: filter })} title='Población corresponde a la estimación de la población de 18 años y más, según Proyección año 2021 basada en el Censo 2017, INE'>
-                    <progress max='100' value={filter * 100} />
+                <section data-value={toPercentage({ locale, number: value })} title='Población corresponde a la estimación de la población de 18 años y más, según Proyección año 2021 basada en el Censo 2017, INE'>
+                    <progress max='100' value={value * 100} />
                 </section>
             </form>
         </>

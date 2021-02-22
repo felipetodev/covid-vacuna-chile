@@ -10,9 +10,10 @@ import Progress from 'components/Progress'
 import Prevision from 'components/Prevision'
 import Link from 'next/link'
 import Share from 'components/Share'
-import { json } from 'public/data/test-vaccinaction'
 
-export default function Home({ info, dosisAdministradasTotal, actualPfizerPrimeraDayData, actualPfizerSegundaDayData, actualSinovacPrimeraDayData, actualSinovacSegundaDayData }) {
+export default function Home({ info, data, vaccineData }) {
+  const totals = data.find(({ Region }) => Region === 'Total')
+
   return (
     <div className={styles.container}>
       <Head>
@@ -67,7 +68,7 @@ export default function Home({ info, dosisAdministradasTotal, actualPfizerPrimer
                 <h3>Dosis Administradas</h3>
                 <p>
                   <NumberDigits>
-                    {dosisAdministradasTotal}
+                    {totals.totalDosisAdministradas}
                   </NumberDigits>
                 </p>
               </div>
@@ -75,13 +76,13 @@ export default function Home({ info, dosisAdministradasTotal, actualPfizerPrimer
                 <small>
                   <img className={styles.companyLogo} src='pfizer-logo.png' />
                   <NumberDigits>
-                    {actualPfizerPrimeraDayData + actualPfizerSegundaDayData}
+                    {vaccineData[0].totalDosisDistribuidasPfizer}
                   </NumberDigits>
                 </small>
                 <small>
                   <img className={styles.companyLogo} src='sinovac-logo.png' />
                   <NumberDigits>
-                    {actualSinovacPrimeraDayData + actualSinovacSegundaDayData}
+                    {vaccineData[1].totalDosisDistribuidasSinovac}
                   </NumberDigits>
                 </small>
               </div>
@@ -102,7 +103,7 @@ export default function Home({ info, dosisAdministradasTotal, actualPfizerPrimer
                 <h3>Personas con pauta completa</h3>
                 <p>
                   <NumberDigits>
-                    {actualPfizerSegundaDayData + actualSinovacSegundaDayData}
+                    {totals.segundasDosisAdministradas}
                   </NumberDigits>
                 </p>
               </div>
@@ -111,7 +112,7 @@ export default function Home({ info, dosisAdministradasTotal, actualPfizerPrimer
                   <h4>% sobre administradas</h4>
                   <p className={styles.secondary}>
                     <NumberPercentage>
-                      {(actualPfizerSegundaDayData + actualSinovacSegundaDayData) / dosisAdministradasTotal}
+                      {totals.segundasDosisAdministradas / totals.totalDosisAdministradas}
                     </NumberPercentage>
                   </p>
                 </small>
@@ -121,8 +122,8 @@ export default function Home({ info, dosisAdministradasTotal, actualPfizerPrimer
 
         </div>
 
-        <Progress />
-        <Prevision />
+        <Progress totals={totals} />
+        <Prevision totals={totals} />
 
         <a className={styles.download} download href='/data/latest.json'>
           <Image
@@ -148,7 +149,7 @@ export default function Home({ info, dosisAdministradasTotal, actualPfizerPrimer
       </main>
 
       <h2 className={styles.subtitle}>Por regiones</h2>
-      <Table />
+      <Table data={data} />
 
       <h2 className={styles.subtitle}>Enlaces de interés</h2>
       <ul>
@@ -181,23 +182,15 @@ export default function Home({ info, dosisAdministradasTotal, actualPfizerPrimer
 }
 
 export async function getStaticProps() {
-  const {
-    dosisAdministradasTotal,
-    actualPfizerPrimeraDayData,
-    actualPfizerSegundaDayData,
-    actualSinovacPrimeraDayData,
-    actualSinovacSegundaDayData
-  } = require('../public/data/logic')
-  const info = require('../data/info.json')
+  const data = require('../public/data/latest.json')
+  const vaccineData = require('../public/data/trademark_latest.json')
+  const info = require('../public/data/info.json')
 
   return {
     props: {
-      dosisAdministradasTotal,
-      actualPfizerPrimeraDayData,
-      actualPfizerSegundaDayData,
-      actualSinovacPrimeraDayData,
-      actualSinovacSegundaDayData,
-      info,
+      data,
+      vaccineData,
+      info
     }
   }
 }
