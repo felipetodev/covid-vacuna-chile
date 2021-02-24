@@ -50,7 +50,6 @@
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  /* grid-template-columns: repeat(auto-fill, minmax(275px, 1fr)); */
   grid-gap: 32px;
   max-width: 1000px;
   margin-top: 3rem;
@@ -73,6 +72,16 @@
 }
 
 .download:hover {
+  color: #555;
+  border-bottom: 1px dashed #09f;
+}
+
+.link {
+  color: #333;
+  border-bottom: 1px dashed #ddd;
+}
+
+.link:hover {
   color: #555;
   border-bottom: 1px dashed #09f;
 }

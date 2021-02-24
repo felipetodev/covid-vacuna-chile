@@ -3,7 +3,7 @@ import styles from 'styles/Share.module.css'
 export default function Share() {
     const params = new URLSearchParams({
         url: 'https://covid-vacuna-chile.vercel.app',
-        text: '¡Sigue el progreso de vacunación contra el COVID19 en Chile! 👩‍⚕️💉'
+        text: '¡Sigue aquí el estado y progreso de vacunación contra el COVID19 en Chile! 👩‍⚕️💉'
     })
 
     const url = `https://twitter.com/share?${params}`
