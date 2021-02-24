@@ -2,7 +2,6 @@ import styles from 'styles/Embed.module.css'
 import NumberDigits from 'components/NumberDigits'
 import NumberPercentage from 'components/NumberPercentage'
 import TimeAgo from 'components/TimeAgo'
-import { getPartialVacunationPopulation } from 'services/getProgressCalculation'
 
 export default function Embed({ info, data, vaccineData }) {
     const totals = data.find(({ Region }) => Region === 'Total')
@@ -24,7 +23,7 @@ export default function Embed({ info, data, vaccineData }) {
                             </p>
                         </div>
                         <p>
-                            Supone el <strong><NumberPercentage>{totals.totalDosisAdministradas / getPartialVacunationPopulation}</NumberPercentage></strong> del total de Chile<br />
+                            Supone el <strong><NumberPercentage>{totals.totalDosisAdministradas / totals.poblacionOver18}</NumberPercentage></strong> del total de Chile<br />
                             <strong><NumberPercentage>{totals.primerasDosisAdministradas / totals.totalDosisAdministradas}</NumberPercentage></strong> corresponde a primeras dosis<br />
                             <strong><NumberPercentage>{totals.segundasDosisAdministradas / totals.totalDosisAdministradas}</NumberPercentage></strong> corresponde a segundas dosis<br />
                         </p>
