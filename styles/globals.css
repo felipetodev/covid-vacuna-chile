@@ -26,3 +26,10 @@ li {
   padding-bottom: 16px;
   font-size: 1.2rem;
 }
+
+.fullscreen-enabled {
+  background-color: #fefefe;
+  background-image:  radial-gradient(#cdd0ff 1px, transparent 1px), radial-gradient(#cdd0ff 1px, #fefefe 1px);
+  background-size: 40px 40px;
+  background-position: 0 0,20px 20px;
+}

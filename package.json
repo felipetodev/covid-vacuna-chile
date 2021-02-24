@@ -16,6 +16,7 @@
     "next": "10.0.5",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-full-screen": "^1.0.1",
     "react-table": "7.6.3"
   }
 }

@@ -52,6 +52,16 @@ export default function Home({ info, data, vaccineData }) {
           </a>
         </small>
 
+        <div className={styles.dashboard}>
+          <Link href='/tv'>
+            <a
+              alt='Dashboard mode'
+              title='Dashboard'>
+              TV Mode
+            </a>
+          </Link>
+        </div>
+
         <div className={styles.grid}>
           <div className={styles.card}>
             <header>

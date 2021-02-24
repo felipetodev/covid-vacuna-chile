@@ -1,24 +1,31 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import Head from 'next/head'
-import Link from 'next/link'
+import Image from 'next/image'
 import styles from 'styles/Tv.module.css'
 import NumberDigits from 'components/NumberDigits'
 import NumberPercentage from 'components/NumberPercentage'
 import TimeAgo from 'components/TimeAgo'
-import Image from 'next/image'
 import Progress from 'components/Progress'
+import { FullScreen, useFullScreenHandle } from "react-full-screen"
 
 export default function Tv({ data, vaccineData, info }) {
     const [ region, setRegion ] = useState(16)
+    const [ fullscreen, setFullscreen ] = useState(false)
     const totals = data.find(({ Region }) => Region === 'Total')
-    
     const regionChanger = data[region]
+    const handle = useFullScreenHandle()
 
     useEffect(() => {
-        setInterval(() => {
+        const interval = setInterval(() => {
             setRegion(Math.floor(Math.random() * (data.length - 1)) + 1)
         }, 6000)
+
+        return () => clearInterval(interval)
     }, [])
+
+    const reportChange = useCallback(state => {
+        setFullscreen(state)
+    }, [handle])
 
     return (
         <>
@@ -26,7 +33,7 @@ export default function Tv({ data, vaccineData, info }) {
                 <title>Estado y progreso vacunación COVID-19 Chile 2021 - TV Dashboard</title>
             </Head>
 
-            <main className={styles.main}>
+            <FullScreen className={styles.main} handle={handle} onChange={reportChange}>
                 <h1 className={styles.title}>Vacunación COVID-19 en Chile</h1>
                 <small className={styles.description}>
                     Datos actualizados <TimeAgo timestamp={info.lastModified} />.
@@ -35,6 +42,10 @@ export default function Tv({ data, vaccineData, info }) {
                         Fuente: Ministerio de Ciencia
                 </a>
                 </small>
+
+                <div className={fullscreen ? styles.dashboardActive : styles.dashboard}>
+                    <button onClick={handle.enter}>Fullscreen</button>
+                </div>
 
                 <div className={styles.grid}>
                     <div className={styles.card}>
@@ -184,7 +195,7 @@ export default function Tv({ data, vaccineData, info }) {
                     </div>
 
                 </div>
-            </main>
+            </FullScreen>
         </>
     )
 }
