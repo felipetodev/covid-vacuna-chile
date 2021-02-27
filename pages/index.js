@@ -10,8 +10,10 @@ import Progress from 'components/Progress'
 import Prevision from 'components/Prevision'
 import Link from 'next/link'
 import Share from 'components/Share'
+import { DosisPorEdadTooltip } from 'components/ProgressChart/tooltips'
+import ProgressChart from 'components/ProgressChart'
 
-export default function Home({ info, data, vaccineData }) {
+export default function Home({ info, data, vaccineData, ageRangeData }) {
   const totals = data.find(({ Region }) => Region === 'Total')
 
   return (
@@ -161,6 +163,12 @@ export default function Home({ info, data, vaccineData }) {
       <h2 className={styles.subtitle}>Por regiones</h2>
       <Table data={data} />
 
+      <h2 className={styles.subtitle}>Dosis administradas por edad</h2>
+      <ProgressChart
+        tooltip={DosisPorEdadTooltip}
+        data={ageRangeData}
+      />
+
       <h2 className={styles.subtitle}>Enlaces de interés</h2>
       <ul>
         <li>
@@ -194,12 +202,14 @@ export default function Home({ info, data, vaccineData }) {
 export async function getStaticProps() {
   const data = require('../public/data/latest.json')
   const vaccineData = require('../public/data/trademark_latest.json')
+  const ageRangeData = require('../public/data/age_range_vaccine.json')
   const info = require('../public/data/info.json')
 
   return {
     props: {
       data,
       vaccineData,
+      ageRangeData,
       info
     }
   }

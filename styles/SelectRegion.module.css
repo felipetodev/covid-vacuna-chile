@@ -1,0 +1,61 @@
+.sectionSelect {
+  margin-top: 0.5rem;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+  
+.sectionSelect div {
+  background: #fefefe;
+  border-radius: 5000px;
+  border: 1px solid #000;
+  box-shadow: #d2effd 1px 4px;
+  margin-left: 8px;
+  position: relative;
+}
+  
+.sectionSelect div::after {
+  content: '▾';
+  font-size: 1.3rem;
+  margin: auto;
+  position: absolute;
+  right: 8px;
+  top: -2px;
+  pointer-events: none;
+  z-index: 0;
+}
+  
+.sectionSelect select {
+  appearance: none;
+  background: #fefefe;
+  border: transparent;
+  border-radius: 5000px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: #000;
+  padding: 4px 24px 4px 16px;
+  outline: none;
+}
+  
+.sectionSelect div:hover {
+  border-color: #ccc;
+  opacity: .8;
+}
+  
+.sectionSelect select::-webkit-scrollbar {
+  width: 10px;
+}
+  
+.sectionSelect select::-webkit-scrollbar-thumb {
+    background-color: #92d5ff;
+    border-radius: 10px;
+}
+  
+@media (max-width: 530px) {
+  .sectionSelect {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
