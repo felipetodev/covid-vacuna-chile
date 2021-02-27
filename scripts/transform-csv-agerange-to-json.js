@@ -1,6 +1,6 @@
 const csvtojson = require('csvtojson');
 
-module.exports = async function transformCsvVaccineToJson(csvFileName) {
+module.exports = async function transformCsvAgeRangeToJson(csvFileName) {
     const json = await csvtojson().fromFile(`./public/data/${csvFileName}`)
 
     const newDataset = json.map(({ Region, Dosis, ...restOfData }) => {
