@@ -11,6 +11,9 @@
     border-radius: 8px;
     border: 2px solid #111;
     margin: 1rem 0 3rem;
+}
+
+.chartContainer svg {
     padding-right: 3rem;
 }
   
