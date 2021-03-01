@@ -12,8 +12,9 @@ import Link from 'next/link'
 import Share from 'components/Share'
 import { DosisPorEdadTooltip } from 'components/ProgressChart/tooltips'
 import ProgressChart from 'components/ProgressChart'
+import PieChartGraph from 'components/PieChartGraph'
 
-export default function Home({ info, data, vaccineData, ageRangeData }) {
+export default function Home({ info, data, vaccineData, ageRangeData, bySexData }) {
   const totals = data.find(({ Region }) => Region === 'Total')
 
   return (
@@ -169,6 +170,11 @@ export default function Home({ info, data, vaccineData, ageRangeData }) {
         data={ageRangeData}
       />
 
+      <h2 className={styles.subtitle}>Dosis administradas por sexo</h2>
+      <PieChartGraph
+        data={bySexData} 
+      />
+
       <h2 className={styles.subtitle}>Enlaces de interés</h2>
       <ul>
         <li>
@@ -203,6 +209,7 @@ export async function getStaticProps() {
   const data = require('../public/data/latest.json')
   const vaccineData = require('../public/data/trademark_latest.json')
   const ageRangeData = require('../public/data/age_range_vaccine.json')
+  const bySexData = require('../public/data/by_sex_vaccine.json')
   const info = require('../public/data/info.json')
 
   return {
@@ -210,6 +217,7 @@ export async function getStaticProps() {
       data,
       vaccineData,
       ageRangeData,
+      bySexData,
       info
     }
   }

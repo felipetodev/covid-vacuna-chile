@@ -19,6 +19,7 @@ jobs:
     - run: npm run download-today-status
     - run: npm run download-today-trademark-status
     - run: npm run download-covid-agerange-status
+    - run: npm run download-covid-vaccine-bysex-status
     - run: |
         git config user.name felipetodev
         git config user.email fe.ossandon.u@gmail.com
