@@ -51,7 +51,7 @@ export default function Home({ info, data, vaccineData, ageRangeData, bySexData 
         <small className={styles.description}>
           Datos actualizados <TimeAgo timestamp={info.lastModified} />.
           {' '}
-          <a target='_blank' rel='noreferrer' href='https://www.minciencia.gob.cl/covid19'>
+          <a target='_blank' rel='noreferrer' href='https://github.com/MinCiencia/Datos-COVID19'>
             Fuente: Ministerio de Ciencia
           </a>
         </small>
