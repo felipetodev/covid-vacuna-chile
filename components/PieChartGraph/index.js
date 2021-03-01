@@ -1,10 +1,10 @@
 import { useState, useRef, useCallback } from 'react'
-import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts'
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts'
 import useIntersectionObserver from 'hooks/useIntersectionObserver'
 import { renderActiveShape, renderCustomizedLabel } from './tooltips'
 import styles from './styles/PieChartGraph.module.css'
 
-export default function PieChartGraph({ data }) {
+export default function PieChartGraph({ data, tooltip: CustomTooltip }) {
     const [activeIndex, setActiveIndex] = useState(0)
     const elementRef = useRef(null)
     const onPieEnter = useCallback((_, index) => {
@@ -47,13 +47,15 @@ export default function PieChartGraph({ data }) {
                                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                 ))}
                             </Pie>
+                            <Tooltip content={<CustomTooltip />} />
                         </PieChart>
                     </ResponsiveContainer>
+
                     <ResponsiveContainer width="100%" height="95%">
                         <PieChart>
                             <Pie
                                 dataKey="value"
-                                innerRadius={"50%"}
+                                innerRadius={"38%"}
                                 outerRadius={"60%"}
                                 startAngle={180}
                                 endAngle={-360}

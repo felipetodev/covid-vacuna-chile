@@ -4,3 +4,13 @@
     width: 80vw;
     height: 55vh;
 }
+
+.chartTooltip {
+    color: #2c7cdc;
+    background-color: #fefefe;
+    border: 2px solid #001e63;
+    padding: 0 10px;
+    border-radius: 8px;
+    text-align: center;
+    width: 10em;
+}

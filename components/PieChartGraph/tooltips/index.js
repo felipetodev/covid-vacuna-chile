@@ -1,4 +1,9 @@
 import { Sector } from 'recharts'
+import styles from '../styles/PieChartGraph.module.css'
+import { toDigit } from 'components/NumberDigits'
+
+const locale = 'es'
+const formatDigit = number => toDigit({ locale, number })
 
 export const renderActiveShape = (props) => {
     const RADIAN = Math.PI / 180;
@@ -59,7 +64,7 @@ export const renderActiveShape = (props) => {
                 y={ey}
                 textAnchor={textAnchor}
                 fill="#001e63"
-            >{`Total: ${value} 💉`}</text>
+            >{`Total: ${formatDigit(value)} 💉`}</text>
             <text
                 x={ex + (cos >= 0 ? 1 : -1) * 12}
                 y={ey}
@@ -91,5 +96,25 @@ export const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadi
         >
             {payload.name}: {`${(percent * 100).toFixed(0)}%`}
         </text>
+    )
+}
+
+function Bold({ text }) {
+    return <b style={{ color: '#001e63' }}>{text}</b>
+}
+
+export function DosisPorSexoTooltip({ active, payload }) {
+    if (!active) return null
+
+    const value = payload[0].value
+    const name = payload[0].name
+
+    return (
+        <div className={styles.chartTooltip}>
+            <p>
+                Corresponde a <Bold text={formatDigit(value)} />{'  '}
+                dosis en <Bold text={name === 'Hombre' ? 'Hombres' : 'Mujeres'} />
+            </p>
+        </div>
     )
 }

@@ -11,6 +11,7 @@ import Prevision from 'components/Prevision'
 import Link from 'next/link'
 import Share from 'components/Share'
 import { DosisPorEdadTooltip } from 'components/ProgressChart/tooltips'
+import { DosisPorSexoTooltip } from 'components/PieChartGraph/tooltips'
 import ProgressChart from 'components/ProgressChart'
 import PieChartGraph from 'components/PieChartGraph'
 
@@ -172,6 +173,7 @@ export default function Home({ info, data, vaccineData, ageRangeData, bySexData 
 
       <h2 className={styles.subtitle}>Dosis administradas por sexo</h2>
       <PieChartGraph
+        tooltip={DosisPorSexoTooltip}
         data={bySexData} 
       />
 
