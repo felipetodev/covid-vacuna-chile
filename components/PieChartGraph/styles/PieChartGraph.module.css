@@ -1,13 +1,20 @@
 .gridContainer {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     width: 80vw;
-    height: 55vh;
+    height: 50vh;
 }
+
+@media (max-width: 600px) {
+    .gridContainer {
+        width: 90vw;
+        height: 80vh;
+    }
+  }
 
 .chartTooltip {
     color: #2c7cdc;
-    background-color: #fefefe;
+    background-color: #fefefeee;
     border: 2px solid #001e63;
     padding: 0 10px;
     border-radius: 8px;

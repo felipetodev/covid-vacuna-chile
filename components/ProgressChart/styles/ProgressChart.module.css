@@ -7,16 +7,13 @@
         radial-gradient(#cdd0ff 1px, transparent 0),
         radial-gradient(#cdd0ff 1px,#fefefe 0);
     background-size: 40px 40px;
-    background-position: 0 0,20px 20px;
+    background-position: 0 0 20px 20px;
     border-radius: 8px;
     border: 2px solid #111;
     margin: 1rem 0 3rem;
-}
-
-.chartContainer svg {
     padding-right: 3rem;
 }
-  
+
 .chartTooltip {
     color: #2c7cdc;
     background-color: #fefefe;

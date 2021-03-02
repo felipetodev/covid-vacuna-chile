@@ -53,9 +53,17 @@
   
 @media (max-width: 530px) {
   .sectionSelect {
+    position: absolute;
+    left: 0;
+    right: 0;
     align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    z-index: 1;
+  }
+
+  .sectionSelect label {
+    display: none;
   }
 }
