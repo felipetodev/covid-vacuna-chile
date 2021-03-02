@@ -79,19 +79,3 @@ export default function PieChartGraph({ data, tooltip: CustomTooltip }) {
         </div>
     )
 }
-
-/*
-    <Pie
-        dataKey="value"
-        innerRadius={"38%"}
-        outerRadius={"60%"}
-        startAngle={180}
-        endAngle={-360}
-        activeIndex={activeIndex}
-        activeShape={renderActiveShape}
-        data={data02}
-        paddingAngle={1}
-        fill="#6795ec"
-        onMouseEnter={onPieEnter}
-    />
-*/

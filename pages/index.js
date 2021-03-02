@@ -21,29 +21,8 @@ export default function Home({ info, data, vaccineData, ageRangeData, bySexData 
   return (
     <div className={styles.container}>
       <Head>
-        <title>Estado y progreso vacunación COVID-19 Chile 2021</title>
-        <meta
-          name='description'
-          content='Consulta el estado y progreso de la vacunación del COVID-19 de forma diaria según datos del gobierno'
-        />
+        <link rel='alternate icon' href='https://covid-vacuna-chile.vercel.app/vacuna.png' type='image/png' />
         <meta name='theme-color' content='#d2effd' />
-        <meta property='og:locale' content='es' />
-        <meta property='og:type' content='website' />
-        <meta property='og:title' content='Estado y progreso vacunación COVID-19 Chile 2021' />
-        <meta property='og:image' content='https://covid-vacuna-chile.vercel.app/yo-me-vacuno.png' />
-        <meta property='og:description' content='Consulta el estado y progreso de la vacunación del COVID-19 de forma diaria según datos del gobierno' />
-        <meta property='og:site_name' content='Estado vacunación en Chile' />
-
-        <meta name='twitter:card' content='summary_large_image' />
-        <meta name='twitter:creator' content='fe_ossandon' />
-        <meta name='twitter:description' content='Consulta el estado y progreso de la vacunación del COVID-19 de forma diaria según datos del gobierno' />
-        <meta name='twitter:site' content='fe_ossandon' />
-        <meta name='twitter:title' content='Estado y progreso vacunación COVID-19 Chile 2021' />
-        <meta name='twitter:image' content='https://covid-vacuna-chile.vercel.app/yo-me-vacuno.png' />
-        <meta property='twitter:domain' content='covid-vacuna-chile.vercel.app' />
-        <meta property='twitter:url' content='https://covid-vacuna-chile.vercel.app/' />
-        <link rel='canonical' href='https://covid-vacuna-chile.vercel.app' />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
@@ -139,7 +118,7 @@ export default function Home({ info, data, vaccineData, ageRangeData, bySexData 
         <Progress totals={totals} />
         <Prevision totals={totals} />
 
-        <a className={styles.download} download href='../data/latest.json'>
+        <a className={styles.download} download href='/data/latest.json'>
           <Image
             width={32}
             height={32}
@@ -174,7 +153,7 @@ export default function Home({ info, data, vaccineData, ageRangeData, bySexData 
       <h2 className={styles.subtitle}>Dosis administradas por sexo</h2>
       <PieChartGraph
         tooltip={DosisPorSexoTooltip}
-        data={bySexData} 
+        data={bySexData}
       />
 
       <h2 className={styles.subtitle}>Enlaces de interés</h2>
