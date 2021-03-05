@@ -53,6 +53,7 @@ export const renderActiveShape = (props) => {
         innerRadius,
         outerRadius,
         startAngle,
+        payload,
         endAngle,
         percent,
     } = props
@@ -61,6 +62,14 @@ export const renderActiveShape = (props) => {
         <g>
             <text x={cx} y={cy} dy={5} textAnchor="middle" fill='#001e63' style={{ fontWeight: 'bold' }}>
                 {`${(percent * 100).toFixed(2)}%`}
+            </text>
+            <text x={cx} y={cy * 1.15} dy={5} textAnchor="middle" fill='#888888' style={{ fontWeight: 'bold', fontSize: '12.5px' }}>
+                {payload
+                    ? payload.name === '1° dosis Hombre' || payload.name === '1° dosis Mujer'
+                        ? '1° dosis'
+                        : '2° dosis'
+                    : ''
+                }
             </text>
             <Sector
                 cx={cx}

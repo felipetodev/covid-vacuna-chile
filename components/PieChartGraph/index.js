@@ -22,10 +22,10 @@ export default function PieChartGraph({ data, tooltip: CustomTooltip }) {
     ]
 
     const data02 = [
-        { name: 'primeras vacunas Hombre', value: data.primerasDosisHombre },
-        { name: 'segundas vacunas Hombre', value: data.segundasDosisHombre },
-        { name: 'primeras vacunas Mujer', value: data.primerasDosisMujer },
-        { name: 'segundas vacunas Mujer', value: data.segundasDosisMujer }
+        { name: '1° dosis Hombre', value: data.primerasDosisHombre },
+        { name: '2° dosis Hombre', value: data.segundasDosisHombre },
+        { name: '1° dosis Mujer', value: data.primerasDosisMujer },
+        { name: '2° dosis Mujer', value: data.segundasDosisMujer }
     ]
 
     const COLORS = ['#6795ec', '#8b6db6', '#5c9edb', '#7387ce'];
@@ -47,7 +47,7 @@ export default function PieChartGraph({ data, tooltip: CustomTooltip }) {
                                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                 ))}
                             </Pie>
-                            <Legend verticalAlign="bottom" height={36} />
+                            <Legend verticalAlign="bottom" height={36} fontSize='5px' iconType='circle' />
                             <Tooltip content={<CustomTooltip />} />
                         </PieChart>
                     </ResponsiveContainer>
