@@ -3,41 +3,38 @@ const csvtojson = require('csvtojson');
 module.exports = async function transformCsvBySexToJson(csvFileName) {
     const json = await csvtojson().fromFile(`./public/data/${csvFileName}`)
 
-    const dataHombre = json.filter(el => el.Sexo === 'Hombre')
-    const dataMujer = json.filter(el => el.Sexo === 'Mujer')
+    const dataBySex = json.map(({ Dosis, Sexo, ...restOfData }) => {
+        const countedKey = Object.keys(restOfData)
 
-    const dataHombrePrimeras = dataHombre[0]
-    const dataHombreSegundas = dataHombre[1]
-    const dataMujerPrimeras = dataMujer[0]
-    const dataMujerSegundas = dataMujer[1]
+        let totalCount = 0
 
-    const objValuePrimerasHombre = Object.values(dataHombrePrimeras).map(el => el * 1)
-    const objValueSegundasHombre = Object.values(dataHombreSegundas).map(el => el * 1)
+        countedKey.forEach(el => {
+            totalCount += +restOfData[el]
+        })
 
-    const objValuePrimerasMujer = Object.values(dataMujerPrimeras).map(el => el * 1)
-    const objValueSegundasMujer = Object.values(dataMujerSegundas).map(el => el * 1)
+        return {
+            Dosis,
+            Sexo,
+            [`total${Dosis}`]: totalCount
+        }
+    })
 
-    let totalPrimerasHombre = 0
-    let totalSegundasHombre = 0
-    let totalPrimerasMujer = 0
-    let totalSegundasMujer = 0
+    const firstData = dataBySex.filter(el => el.Dosis === 'Primera')
+    const secondData = dataBySex.filter(el => el.Dosis === 'Segunda')
 
-    for (let i = 0; i < objValuePrimerasHombre.length || i < objValueSegundasHombre.length; i++) {
-        !isNaN(objValuePrimerasHombre[i]) ? totalPrimerasHombre += objValuePrimerasHombre[i] : 0
-        !isNaN(objValueSegundasHombre[i]) ? totalSegundasHombre += objValueSegundasHombre[i] : 0
+    const totals = []
+
+    for (let i = 0; i < firstData.length || i < secondData.length; i++) {
+        const { totalPrimera } = firstData[i] || {}
+        const secondDosis = secondData[i] || {}
+
+        totals[i] = {
+            Sexo: secondDosis.Sexo,
+            [`totalPrimera${secondDosis.Sexo}`]: totalPrimera,
+            [`totalSegunda${secondDosis.Sexo}`]: secondDosis.totalSegunda,
+            [`totalDosis${secondDosis.Sexo}`]: totalPrimera + secondDosis.totalSegunda
+        }
     }
 
-    for (let i = 0; i < objValuePrimerasMujer.length || i < objValueSegundasMujer.length; i++) {
-        !isNaN(objValuePrimerasMujer[i]) ? totalPrimerasMujer += objValuePrimerasMujer[i] : 0
-        !isNaN(objValueSegundasMujer[i]) ? totalSegundasMujer += objValueSegundasMujer[i] : 0
-    }
-    
-    return {
-        primerasDosisHombre: totalPrimerasHombre,
-        segundasDosisHombre: totalSegundasHombre,
-        totalDosisHombre: totalPrimerasHombre + totalSegundasHombre,
-        primerasDosisMujer: totalPrimerasMujer,
-        segundasDosisMujer: totalSegundasMujer,
-        totalDosisMujer: totalPrimerasMujer + totalSegundasMujer
-    }
+    return totals
 }

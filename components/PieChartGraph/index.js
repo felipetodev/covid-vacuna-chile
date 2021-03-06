@@ -15,17 +15,21 @@ export default function PieChartGraph({ data, tooltip: CustomTooltip }) {
         elementRef,
         freezeOnceVisible: true
     })
+    
+    const dataHombre = data.find(el => el.Sexo === 'Hombre')
+    const dataMujer = data.find(el => el.Sexo === 'Mujer')
+    // const unknownData = data.find(el => el.Sexo === 'Desconocido')
 
     const data01 = [
-        { name: 'Hombre', value: data.totalDosisHombre },
-        { name: 'Mujer', value: data.totalDosisMujer },
+        { name: 'Hombre', value: dataHombre.totalDosisHombre },
+        { name: 'Mujer', value: dataMujer.totalDosisMujer }
     ]
 
     const data02 = [
-        { name: '1° dosis Hombre', value: data.primerasDosisHombre },
-        { name: '2° dosis Hombre', value: data.segundasDosisHombre },
-        { name: '1° dosis Mujer', value: data.primerasDosisMujer },
-        { name: '2° dosis Mujer', value: data.segundasDosisMujer }
+        { name: '1° dosis Hombre', value: dataHombre.totalPrimeraHombre },
+        { name: '2° dosis Hombre', value: dataHombre.totalSegundaHombre },
+        { name: '1° dosis Mujer', value: dataMujer.totalPrimeraMujer },
+        { name: '2° dosis Mujer', value: dataMujer.totalSegundaMujer }
     ]
 
     const COLORS = ['#6795ec', '#8b6db6', '#5c9edb', '#7387ce'];
@@ -47,7 +51,12 @@ export default function PieChartGraph({ data, tooltip: CustomTooltip }) {
                                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                 ))}
                             </Pie>
-                            <Legend verticalAlign="bottom" height={36} fontSize='5px' iconType='circle' />
+                            <Legend
+                                verticalAlign="bottom"
+                                height={36}
+                                iconSize={8}
+                                iconType='circle'
+                            />
                             <Tooltip content={<CustomTooltip />} />
                         </PieChart>
                     </ResponsiveContainer>
@@ -55,13 +64,13 @@ export default function PieChartGraph({ data, tooltip: CustomTooltip }) {
                     <ResponsiveContainer width="100%" height="95%">
                         <PieChart>
                             <Pie
+                                fontWeight="bold"
                                 dataKey="value"
                                 innerRadius={"38%"}
                                 outerRadius={"65%"}
                                 data={data02}
                                 cx="50%"
                                 cy="50%"
-                                fill="#8884d8"
                                 activeIndex={activeIndex}
                                 activeShape={renderActiveShape}
                                 onMouseEnter={onPieEnter}
