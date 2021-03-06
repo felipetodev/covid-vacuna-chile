@@ -93,9 +93,7 @@
 
 .companyLogo {
   margin-right: 8px;
-  max-width: 72px;
   height: auto;
-  object-fit: contain;
 }
 
 .download {
@@ -191,9 +189,8 @@
   padding: .3rem 0;
 }
 
-.card span {
-  margin-right: 8px;
-  color: #333;
+.card small > span {
+  margin-left: 8px;
 }
 
 .logo {

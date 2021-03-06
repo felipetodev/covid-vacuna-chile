@@ -54,6 +54,7 @@ export default function Home({ info, data, vaccineData, ageRangeData, bySexData 
                 alt='Vacunas distribuidas en Chile'
                 width={150}
                 height={150}
+                priority
               />
             </header>
             <section>
@@ -67,16 +68,34 @@ export default function Home({ info, data, vaccineData, ageRangeData, bySexData 
               </div>
               <div>
                 <small>
-                  <img className={styles.companyLogo} src='pfizer-logo.png' />
-                  <NumberDigits>
-                    {vaccineData[0].totalDosisDistribuidasPfizer}
-                  </NumberDigits>
+                  <Image
+                    alt='pfizer logo'
+                    className={styles.companyLogo}
+                    src='/pfizer-logo.png'
+                    height={29}
+                    width={72}
+                    priority
+                  />
+                  <span>
+                    <NumberDigits>
+                      {vaccineData[0].totalDosisDistribuidasPfizer}
+                    </NumberDigits>
+                  </span>
                 </small>
                 <small>
-                  <img className={styles.companyLogo} src='sinovac-logo.png' />
-                  <NumberDigits>
-                    {vaccineData[1].totalDosisDistribuidasSinovac}
-                  </NumberDigits>
+                  <Image
+                    alt='sinovac logo'
+                    className={styles.companyLogo}
+                    src='/sinovac-logo.png'
+                    height={13.5}
+                    width={72}
+                    priority
+                  />
+                  <span>
+                    <NumberDigits>
+                      {vaccineData[1].totalDosisDistribuidasSinovac}
+                    </NumberDigits>
+                  </span>
                 </small>
               </div>
             </section>
@@ -89,6 +108,7 @@ export default function Home({ info, data, vaccineData, ageRangeData, bySexData 
                 alt='Vacunas administradas en Chile'
                 width={150}
                 height={150}
+                priority
               />
             </header>
             <section>
@@ -124,6 +144,7 @@ export default function Home({ info, data, vaccineData, ageRangeData, bySexData 
             height={32}
             src='/download.png'
             alt='Descargar datos'
+            priority
           />
           Descargar últimos datos en formato JSON
         </a>
@@ -135,6 +156,7 @@ export default function Home({ info, data, vaccineData, ageRangeData, bySexData 
               height={32}
               src='/embed.png'
               alt='incrustar datos de vacunación'
+              priority
             />
             Quiero incrustar los datos de vacunación en otra página web
           </a>
