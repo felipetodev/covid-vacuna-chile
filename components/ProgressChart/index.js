@@ -37,7 +37,7 @@ export default function ProgressChart({ tooltip: CustomTooltip, data }) {
         <div className={styles.chartContainer} ref={elementRef}>
             {isVisible && (
                 <div style={{ width: '100%', height: 450 }}>
-                    <SelectRegion onChange={setRegion} />
+                    <SelectRegion data={data} onChange={setRegion} />
                     <ResponsiveContainer>
                         <AreaChart
                             data={chartDatasetTotal}
