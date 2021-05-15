@@ -97,6 +97,21 @@ export default function Home({ info, data, vaccineData, ageRangeData, bySexData 
                     </NumberDigits>
                   </span>
                 </small>
+                <small>
+                  <Image
+                    alt='astrazeneca logo'
+                    className={styles.companyLogo}
+                    src='/astrazeneca-logo.png'
+                    height={20}
+                    width={72}
+                    priority
+                  />
+                  <span>
+                    <NumberDigits>
+                      {vaccineData[2].totalDosisDistribuidasAstraZeneca}
+                    </NumberDigits>
+                  </span>
+                </small>
               </div>
             </section>
           </div>

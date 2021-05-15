@@ -117,6 +117,12 @@ export default function Tv({ data, vaccineData, info }) {
                                         {vaccineData[1].totalDosisDistribuidasSinovac}
                                     </NumberDigits>
                                 </small>
+                                <small>
+                                    <img className={styles.companyLogo} src='/astrazeneca-logo.png' />
+                                    <NumberDigits>
+                                        {vaccineData[2].totalDosisDistribuidasAstraZeneca}
+                                    </NumberDigits>
+                                </small>
                             </div>
                         </section>
                     </div>
