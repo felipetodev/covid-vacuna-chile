@@ -6,6 +6,7 @@ module.exports = async function transformCsvVaccineToJson(csvFileName) {
     let jsonPfizer = json.filter(element => element.Fabricante === 'Pfizer')
     let jsonSinovac = json.filter(element => element.Fabricante === 'Sinovac')
     let jsonAstraZeneca = json.filter(element => element.Fabricante === 'Astra-Zeneca')
+    let jsonCansino = json.filter(element => element.Fabricante.toLowerCase() === 'cansino')
 
     const pfizerPrimera = jsonPfizer[0]
     const pfizerPrimeraKey = Object.keys(pfizerPrimera)[Object.keys(pfizerPrimera).length - 1]
@@ -31,6 +32,14 @@ module.exports = async function transformCsvVaccineToJson(csvFileName) {
     const astraZenecaSegundaKey = Object.keys(astraZenecaSegunda)[Object.keys(astraZenecaSegunda).length - 1]
     const astraZenecaSegundaValue = Object.values(astraZenecaSegunda)[Object.values(astraZenecaSegunda).length - 1]
 
+    const cansinoPrimera = jsonCansino[0]
+    const cansinoPrimeraKey = Object.keys(cansinoPrimera)[Object.keys(cansinoPrimera).length - 1]
+    const cansinoPrimeraValue = Object.values(cansinoPrimera)[Object.values(cansinoPrimera).length - 1]
+
+    const cansinoSegunda = jsonCansino[1]
+    const cansinoSegundaKey = Object.keys(cansinoSegunda)[Object.keys(cansinoSegunda).length - 1]
+    const cansinoSegundaValue = Object.values(cansinoSegunda)[Object.values(cansinoSegunda).length - 1]
+
 
     return vaccineData = [
         {
@@ -53,6 +62,13 @@ module.exports = async function transformCsvVaccineToJson(csvFileName) {
             UltRegistroSegundasDosisAstraZeneca: astraZenecaSegundaKey,
             segundasDosisAstraZeneca: +astraZenecaSegundaValue,
             totalDosisDistribuidasAstraZeneca: +astraZenecaPrimeraValue + +astraZenecaSegundaValue
+        },
+        {
+            UltRegistroPrimerasDosisCansino: cansinoPrimeraKey,
+            primerasDosisCansino: +cansinoPrimeraValue,
+            UltRegistroSegundasDosisCansino: cansinoSegundaKey,
+            segundasDosisCansino: +cansinoSegundaValue,
+            totalDosisDistribuidasCansino: +cansinoPrimeraValue + +cansinoSegundaValue
         }
     ]
 }

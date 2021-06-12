@@ -102,13 +102,28 @@ export default function Home({ info, data, vaccineData, ageRangeData, bySexData 
                     alt='astrazeneca logo'
                     className={styles.companyLogo}
                     src='/astrazeneca-logo.png'
-                    height={20}
-                    width={72}
+                    height={25}
+                    width={90}
                     priority
                   />
                   <span>
                     <NumberDigits>
                       {vaccineData[2].totalDosisDistribuidasAstraZeneca}
+                    </NumberDigits>
+                  </span>
+                </small>
+                <small>
+                  <Image
+                    alt='cansino logo'
+                    className={styles.companyLogo}
+                    src='/cansino-logo.png'
+                    height={30}
+                    width={95}
+                    priority
+                  />
+                  <span>
+                    <NumberDigits>
+                      {vaccineData[3].totalDosisDistribuidasCansino}
                     </NumberDigits>
                   </span>
                 </small>

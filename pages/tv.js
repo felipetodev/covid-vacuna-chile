@@ -123,6 +123,12 @@ export default function Tv({ data, vaccineData, info }) {
                                         {vaccineData[2].totalDosisDistribuidasAstraZeneca}
                                     </NumberDigits>
                                 </small>
+                                <small>
+                                    <img className={styles.companyLogo} src='/cansino-logo.png' />
+                                    <NumberDigits>
+                                        {vaccineData[3].totalDosisDistribuidasCansino}
+                                    </NumberDigits>
+                                </small>
                             </div>
                         </section>
                     </div>
