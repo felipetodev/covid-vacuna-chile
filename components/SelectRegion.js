@@ -11,7 +11,7 @@ export default function SelectRegion({ data, onChange }) {
                 <select defaultValue={0} onChange={(e) => onChange(e.target.value)} id='date-select' className={styles.select}>
                     {getUniqueRegion.map((region, idx) => {
                         return (
-                            <option key={region} value={idx * 2}>{region}</option>
+                            <option key={region} value={idx * 3}>{region}</option>
                         )
                     })}
                 </select>

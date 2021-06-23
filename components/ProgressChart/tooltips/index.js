@@ -14,12 +14,15 @@ export function DosisPorEdadTooltip({ active, payload, label }) {
     const value = payload
     const newValue = value[0].payload
 
+    console.log();
+
     return (
         <div className={styles.chartTooltip}>
             <p>
-                Se han administrado <Bold text={formatDigit(newValue.dataPrimeras)} /> primeras dosis{' '} y
-                {' '}<Bold text={formatDigit(newValue.dataSegundas)} /> segundas dosis
-                en personas de <Bold text={label} /> años de edad
+                Se han administrado <Bold text={formatDigit(newValue.dataPrimeras)} /> primeras dosis{' '},
+                {' '}<Bold text={formatDigit(newValue.dataSegundas)} /> segundas dosis y{' '}
+                <Bold text={formatDigit(newValue.dataUnicaDosis)} /> dosis unicas 
+                en personas de <Bold text={`${label} años de edad`} />.
             </p>
         </div>
     )

@@ -17,17 +17,20 @@ export default function ProgressChart({ tooltip: CustomTooltip, data }) {
 
     const chartDatasetPrimera = data[region]
     const chartDatasetSegunda = data[+region + 1]
+    const chartDatasetUnica = data[+region + 2]
 
     const chartDatasetTotal = []
 
     for (let i = 0; i < chartDatasetPrimera.length || i < chartDatasetSegunda.length; i++) {
-        const primeras = chartDatasetPrimera[i] || {};
-        const segundas = chartDatasetSegunda[i] || {};
+        const primeras = chartDatasetPrimera[i] || {}
+        const segundas = chartDatasetSegunda[i] || {}
+        const unica = chartDatasetUnica[i] || {}
         chartDatasetTotal[i] = {
             age: primeras.name,
             region: primeras.region,
             dataPrimeras: primeras.data,
-            dataSegundas: segundas.data
+            dataSegundas: segundas.data,
+            dataUnicaDosis: unica.data
         }
     }
 
