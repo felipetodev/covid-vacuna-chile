@@ -17,13 +17,14 @@ export default function Table({ data }) {
                 segundasDosisAdministradas,
                 porcentajePoblacionAdministradas,
                 porcentajePoblacionCompletas,
+                unicaDosisAdministradas,
                 ...rest
             } = row
 
             return {
                 Regiones: Region,
-                dosisAdministradas: formatDigit(primerasDosisAdministradas + segundasDosisAdministradas),
-                segundasDosisAdministradas: formatDigit(segundasDosisAdministradas),
+                dosisAdministradas: formatDigit(primerasDosisAdministradas + segundasDosisAdministradas + unicaDosisAdministradas),
+                segundasDosisAdministradas: formatDigit(segundasDosisAdministradas + unicaDosisAdministradas),
                 porcentajePoblacionAdministradas: formatPercentage(porcentajePoblacionAdministradas - porcentajePoblacionCompletas),
                 porcentajePoblacionCompletas: formatPercentage(porcentajePoblacionCompletas),
                 ...rest

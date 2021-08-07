@@ -42,7 +42,10 @@ export default function Progress({ totals }) {
                     </label>
                 </div>
 
-                <section data-value={toPercentage({ locale, number: value })} title='Población corresponde a la estimación de la población de 18 años y más, según Proyección año 2021 basada en el Censo 2017, INE'>
+                <section 
+                    data-value={toPercentage({ locale, number: value })} 
+                    title='Población corresponde a la estimación de la población de 18 años y más, según Proyección año 2021 basada en el Censo 2017, INE'
+                >
                     <progress max='100' value={value * 100} />
                 </section>
             </form>

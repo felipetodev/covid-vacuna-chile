@@ -86,6 +86,15 @@ export default function Tv({ data, vaccineData, info }) {
                                         </NumberDigits>
                                     </h4>
                                 </small>
+                                <small>
+                                    <h4>
+                                        <span>Dosis Única:</span>
+                                        {'  '}
+                                        <NumberDigits>
+                                            {totals.unicaDosisAdministradas}
+                                        </NumberDigits>
+                                    </h4>
+                                </small>
                             </div>
                         </section>
                     </div>
@@ -152,11 +161,19 @@ export default function Tv({ data, vaccineData, info }) {
                                 </p>
                             </div>
                             <div>
+                                <h3>Pauta completa con dosis única</h3>
+                                <p>
+                                    <NumberDigits>
+                                        {totals.unicaDosisAdministradas}
+                                    </NumberDigits>
+                                </p>
+                            </div>
+                            <div>
                                 <small className={styles.primary}>
                                     <h4>% sobre administradas</h4>
                                     <p className={styles.secondary}>
                                         <NumberPercentage>
-                                            {totals.segundasDosisAdministradas / totals.totalDosisAdministradas}
+                                            {(totals.segundasDosisAdministradas + totals.unicaDosisAdministradas) / totals.totalDosisAdministradas}
                                         </NumberPercentage>
                                     </p>
                                 </small>

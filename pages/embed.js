@@ -51,6 +51,26 @@ export default function Embed({ info, data, vaccineData }) {
                     </section>
                 </div>
 
+                <div className={styles.card}>
+                    <img
+                        src='/vacunas-completas.png'
+                        alt='Dosis completas subministradas'
+                        width={150}
+                        height={150}
+                    />
+                    <section>
+                        <div>
+                            <h3>Pauta completa con dosis única:</h3>
+                            <p>
+                                <NumberDigits>{totals.unicaDosisAdministradas}</NumberDigits>
+                            </p>
+                        </div>
+                        <p>
+                            Personas que han sido inmunizadas con una única dosis de la vacuna.<br />
+                        </p>
+                    </section>
+                </div>
+
                 <small className={styles.description}>
                     Desarrollado por <strong><a href='https://felipetodev.com' target='_blank' rel='noopener noreferrer'>@felipetodev</a></strong>
                 </small>

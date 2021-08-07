@@ -14,8 +14,6 @@ export function DosisPorEdadTooltip({ active, payload, label }) {
     const value = payload
     const newValue = value[0].payload
 
-    console.log();
-
     return (
         <div className={styles.chartTooltip}>
             <p>
