@@ -11,9 +11,9 @@ import Prevision from 'components/Prevision'
 import Link from 'next/link'
 import Share from 'components/Share'
 import { DosisPorEdadTooltip } from 'components/ProgressChart/tooltips'
-import { DosisPorSexoTooltip } from 'components/PieChartGraph/tooltips'
 import ProgressChart from 'components/ProgressChart'
-import PieChartGraph from 'components/PieChartGraph'
+import firstDosisLogo from '../public/vacuna.png'
+import secondDosisLogo from '../public/vacunas-completas.png'
 
 export default function Home({ info, data, vaccineData, ageRangeData, bySexData }) {
   const totals = data.find(({ Region }) => Region === 'Total')
@@ -50,7 +50,9 @@ export default function Home({ info, data, vaccineData, ageRangeData, bySexData 
             <header>
               <Image
                 className={styles.cardImage}
-                src='/vacuna.png'
+                src={firstDosisLogo}
+                layout='fixed'
+                placeholder='blur'
                 alt='Vacunas distribuidas en Chile'
                 width={150}
                 height={150}
@@ -134,8 +136,10 @@ export default function Home({ info, data, vaccineData, ageRangeData, bySexData 
           <div className={styles.card}>
             <header>
               <Image
-                src='/vacunas-completas.png'
+                src={secondDosisLogo}
                 alt='Vacunas administradas en Chile'
+                layout='fixed'
+                placeholder='blur'
                 width={150}
                 height={150}
                 priority
@@ -210,11 +214,11 @@ export default function Home({ info, data, vaccineData, ageRangeData, bySexData 
         data={ageRangeData}
       />
 
-      <h2 className={styles.subtitle}>Dosis administradas por sexo</h2>
+      {/*<h2 className={styles.subtitle}>Dosis administradas por sexo</h2>
       <PieChartGraph
         tooltip={DosisPorSexoTooltip}
         data={bySexData}
-      />
+      />*/}
 
       <h2 className={styles.subtitle}>Enlaces de interés</h2>
       <ul>
