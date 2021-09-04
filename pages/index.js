@@ -51,7 +51,6 @@ export default function Home({ info, data, vaccineData, ageRangeData, bySexData 
               <Image
                 className={styles.cardImage}
                 src={firstDosisLogo}
-                layout='fixed'
                 placeholder='blur'
                 alt='Vacunas distribuidas en Chile'
                 width={150}
@@ -138,7 +137,6 @@ export default function Home({ info, data, vaccineData, ageRangeData, bySexData 
               <Image
                 src={secondDosisLogo}
                 alt='Vacunas administradas en Chile'
-                layout='fixed'
                 placeholder='blur'
                 width={150}
                 height={150}
