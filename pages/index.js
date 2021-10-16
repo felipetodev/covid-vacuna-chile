@@ -28,10 +28,11 @@ export default function Home({ info, data, vaccineData, ageRangeData, bySexData 
       <main className={styles.main}>
         <h1 className={styles.title}>Vacunación COVID-19 en Chile</h1>
         <small className={styles.description}>
-          Datos actualizados <TimeAgo timestamp={info.lastModified} />.
+          Esta web se dejara de actualizar.
+          Los datos actualizados los puedes encontrar en
           {' '}
           <a target='_blank' rel='noreferrer' href='https://github.com/MinCiencia/Datos-COVID19'>
-            Fuente: Ministerio de Ciencia
+            Ministerio de Ciencia
           </a>
         </small>
 
